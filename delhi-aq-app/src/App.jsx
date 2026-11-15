@@ -100,8 +100,12 @@ function HeroCounter({ targetValue, disabled }) {
 }
 
 // Background Motion Layer: floating editorial typography & sparse hairline boxes
-function BackgroundMotionLayer({ mouseOffset, disabled }) {
+function BackgroundMotionLayer({ mouseOffset, disabled, isDark }) {
   if (disabled) return null;
+
+  const typoClass = isDark ? 'text-[#F4F3EE]/[0.035]' : 'text-[#111111]/[0.04]';
+  const typoClassMuted = isDark ? 'text-[#F4F3EE]/[0.03]' : 'text-[#111111]/[0.035]';
+  const boxBorder = isDark ? 'border-[#F4F3EE]/15' : 'border-[#111111]/15';
 
   return (
     <div
@@ -110,7 +114,7 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
     >
       {/* 1. Oversized floating editorial typography (4-6% opacity) */}
       <div
-        className="absolute top-20 left-10 font-serif font-light text-[150px] leading-none text-[#111111]/[0.04] animate-float-1"
+        className={`absolute top-20 left-10 font-serif font-light text-[150px] leading-none ${typoClass} animate-float-1`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px, 0)`,
         }}
@@ -118,7 +122,7 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
         PM2.5
       </div>
       <div
-        className="absolute top-96 right-12 font-mono text-[130px] leading-none text-[#111111]/[0.035] animate-float-2"
+        className={`absolute top-96 right-12 font-mono text-[130px] leading-none ${typoClassMuted} animate-float-2`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.5}px, ${mouseOffset.y * -0.5}px, 0)`,
         }}
@@ -126,7 +130,7 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
         µg/m³
       </div>
       <div
-        className="absolute top-[680px] left-1/4 font-serif font-light text-[210px] leading-none text-[#111111]/[0.035] animate-float-3"
+        className={`absolute top-[680px] left-1/4 font-serif font-light text-[210px] leading-none ${typoClassMuted} animate-float-3`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.3}px, ${mouseOffset.y * 0.3}px, 0)`,
         }}
@@ -134,7 +138,7 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
         60
       </div>
       <div
-        className="absolute top-[1100px] left-8 font-serif italic text-[160px] leading-none text-[#111111]/[0.04] animate-float-1"
+        className={`absolute top-[1100px] left-8 font-serif italic text-[160px] leading-none ${typoClass} animate-float-1`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.4}px, ${mouseOffset.y * -0.4}px, 0)`,
         }}
@@ -142,7 +146,7 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
         DELHI
       </div>
       <div
-        className="absolute top-[1520px] right-12 font-mono text-[110px] tracking-widest leading-none text-[#111111]/[0.035] animate-float-2"
+        className={`absolute top-[1520px] right-12 font-mono text-[110px] tracking-widest leading-none ${typoClassMuted} animate-float-2`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.5}px, ${mouseOffset.y * 0.5}px, 0)`,
         }}
@@ -150,51 +154,51 @@ function BackgroundMotionLayer({ mouseOffset, disabled }) {
         AIRSHIELD
       </div>
 
-      {/* 2. Floating hairline boxes: 8 sparse 1px #111111/15 rectangles, square corners */}
+      {/* 2. Floating hairline boxes: 8 sparse 1px rectangles, square corners */}
       <div
-        className="absolute top-32 right-1/4 w-36 h-24 border border-[#111111]/15 animate-float-1"
+        className={`absolute top-32 right-1/4 w-36 h-24 border ${boxBorder} animate-float-1`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.5}px, ${mouseOffset.y * 0.5}px, 0)`,
         }}
       />
       <div
-        className="absolute top-84 left-24 w-48 h-32 border border-[#111111]/15 animate-float-3"
+        className={`absolute top-84 left-24 w-48 h-32 border ${boxBorder} animate-float-3`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.4}px, ${mouseOffset.y * -0.4}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[480px] right-20 w-28 h-40 border border-[#111111]/15 animate-float-2"
+        className={`absolute top-[480px] right-20 w-28 h-40 border ${boxBorder} animate-float-2`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.3}px, ${mouseOffset.y * 0.3}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[820px] left-1/3 w-56 h-20 border border-[#111111]/15 animate-float-1"
+        className={`absolute top-[820px] left-1/3 w-56 h-20 border ${boxBorder} animate-float-1`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.6}px, ${mouseOffset.y * -0.6}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[1250px] right-1/3 w-40 h-28 border border-[#111111]/15 animate-float-3"
+        className={`absolute top-[1250px] right-1/3 w-40 h-28 border ${boxBorder} animate-float-3`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[1650px] left-16 w-32 h-32 border border-[#111111]/15 animate-float-2"
+        className={`absolute top-[1650px] left-16 w-32 h-32 border ${boxBorder} animate-float-2`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.5}px, ${mouseOffset.y * -0.5}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[2000px] right-24 w-44 h-24 border border-[#111111]/15 animate-float-1"
+        className={`absolute top-[2000px] right-24 w-44 h-24 border ${boxBorder} animate-float-1`}
         style={{
           transform: `translate3d(${mouseOffset.x * 0.3}px, ${mouseOffset.y * 0.3}px, 0)`,
         }}
       />
       <div
-        className="absolute top-[2300px] left-1/4 w-52 h-36 border border-[#111111]/15 animate-float-3"
+        className={`absolute top-[2300px] left-1/4 w-52 h-36 border ${boxBorder} animate-float-3`}
         style={{
           transform: `translate3d(${mouseOffset.x * -0.4}px, ${mouseOffset.y * -0.4}px, 0)`,
         }}
@@ -244,15 +248,15 @@ function MarqueeStrip({ mode, liveData, currentDay, disabled }) {
   const plainText = items.join(' • ');
 
   return (
-    <div className="border-b border-[#111111]/15 bg-[#111111]/[0.02] py-2 overflow-hidden select-none">
+    <div className="border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.025] py-2 overflow-hidden select-none transition-colors duration-150">
       {/* Accessible plain text for screen readers */}
       <span className="sr-only">{plainText}</span>
 
       {disabled ? (
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 font-mono text-[11px] text-[#6E6D68] overflow-x-auto whitespace-nowrap">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96] overflow-x-auto whitespace-nowrap">
           {items.map((item, idx) => (
             <span key={idx} className="mr-6 inline-flex items-center gap-1.5">
-              <span className="text-[#111111] font-bold">▪</span>
+              <span className="text-[#111111] dark:text-[#F4F3EE] font-bold">▪</span>
               <span>{item}</span>
             </span>
           ))}
@@ -260,13 +264,13 @@ function MarqueeStrip({ mode, liveData, currentDay, disabled }) {
       ) : (
         <div
           aria-hidden="true"
-          className="animate-marquee font-mono text-[11px] text-[#6E6D68] whitespace-nowrap flex items-center"
+          className="animate-marquee font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96] whitespace-nowrap flex items-center"
         >
           {[0, 1].map((copyIndex) => (
             <div key={copyIndex} className="flex items-center">
               {items.map((item, idx) => (
                 <span key={idx} className="mx-6 flex items-center gap-2">
-                  <span className="text-[#111111] font-bold">▪</span>
+                  <span className="text-[#111111] dark:text-[#F4F3EE] font-bold">▪</span>
                   <span>{item}</span>
                 </span>
               ))}
@@ -293,6 +297,25 @@ const DEFAULT_FAILURE_NOTES = {
 };
 
 export default function App() {
+  // Theme state: dark | light (persisted in localStorage)
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const saved = localStorage.getItem('airshield_theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  // Sync dark class on html root and persist
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('airshield_theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('airshield_theme', 'light');
+    }
+  }, [isDark]);
+
   // Language selection: 'en' | 'hi'
   const [lang, setLang] = useState('en');
 
@@ -448,6 +471,27 @@ export default function App() {
     if (!liveData) return false;
     return Boolean(liveData.alert);
   }, [liveData]);
+
+  // Dynamic SVG Colors for Recharts adhering strictly to Swiss Broadsheet Palette
+  const chartColors = useMemo(() => {
+    return {
+      axis: isDark ? '#9E9D96' : '#111111',
+      tick: isDark ? '#9E9D96' : '#6E6D68',
+      model: isDark ? '#60A5FA' : '#1D4ED8',
+      actual: isDark ? '#F4F3EE' : '#111111',
+      baseline: isDark ? '#7E7D76' : '#6E6D68',
+      band: isDark ? '#F4F3EE' : '#111111',
+      bandOpacity: isDark ? 0.08 : 0.07,
+      cursor: isDark ? '#F4F3EE' : '#111111',
+      naaqs: isDark ? '#FF4D36' : '#E13C2A',
+      diwali: isDark ? '#F4F3EE' : '#111111',
+      tooltipBg: isDark ? '#181816' : '#F8F7F4',
+      tooltipBorder: isDark ? '#F4F3EE' : '#111111',
+      tooltipText: isDark ? '#F4F3EE' : '#111111',
+      tooltipMuted: isDark ? '#9E9D96' : '#6E6D68',
+      tooltipDivider: isDark ? 'rgba(244, 243, 238, 0.15)' : 'rgba(17, 17, 17, 0.15)',
+    };
+  }, [isDark]);
 
   // Replay Date Stepper handlers
   const handlePrevDay = () => {
@@ -613,20 +657,20 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8F7F4] text-[#111111] font-sans flex flex-col overflow-x-hidden selection:bg-[#111111] selection:text-[#F8F7F4]">
+    <div className="relative min-h-screen bg-[#F8F7F4] dark:bg-[#121210] text-[#111111] dark:text-[#F4F3EE] font-sans flex flex-col overflow-x-hidden selection:bg-[#111111] selection:text-[#F8F7F4] dark:selection:bg-[#F4F3EE] dark:selection:text-[#121210] transition-colors duration-150">
       {/* Background Motion Layer: floating editorial typography and boxes (pointer-events: none, z-0) */}
-      <BackgroundMotionLayer mouseOffset={mouseOffset} disabled={prefersReducedMotion} />
+      <BackgroundMotionLayer mouseOffset={mouseOffset} disabled={prefersReducedMotion} isDark={isDark} />
 
       {/* Main Content sits above background motion layer */}
       <div className="relative z-10 flex flex-col flex-1">
         {/* ==========================================
             TOP MASTHEAD (Swiss Editorial Broadsheet)
             ========================================== */}
-        <header className="border-b border-[#111111]/15 px-4 sm:px-8 py-4 bg-[#F8F7F4]/90 backdrop-blur-[2px]">
+        <header className="border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 px-4 sm:px-8 py-4 bg-[#F8F7F4]/90 dark:bg-[#121210]/90 backdrop-blur-[2px] transition-colors duration-150">
           <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
             {/* Left: Masthead Title & Metadata */}
             <div className="min-w-0">
-              <div className="font-mono text-[10px] sm:text-[11px] tracking-widest uppercase text-[#6E6D68] flex flex-wrap items-center gap-x-2 gap-y-1">
+              <div className="font-mono text-[10px] sm:text-[11px] tracking-widest uppercase text-[#6E6D68] dark:text-[#9E9D96] flex flex-wrap items-center gap-x-2 gap-y-1">
                 <span>
                   {mode === 'landing'
                     ? 'AIRSHIELD 1.0 // PEDIATRIC SPECIFICATION'
@@ -637,7 +681,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <span>•</span>
                 <span>{t('location')}</span>
                 <span>•</span>
-                <span className="text-[#111111] font-bold">
+                <span className="text-[#111111] dark:text-[#F4F3EE] font-bold">
                   {mode === 'landing'
                     ? 'CO-DEVELOPERS: SWASTIK DIVYANSHU • KRISHNENDU PATRO'
                     : mode === 'live'
@@ -645,7 +689,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                     : t('replayNotice')}
                 </span>
               </div>
-              <h1 className="font-mono text-sm sm:text-base font-bold tracking-tight text-[#111111] uppercase mt-1">
+              <h1 className="font-mono text-sm sm:text-base font-bold tracking-tight text-[#111111] dark:text-[#F4F3EE] uppercase mt-1">
                 {t('appTitle')}
               </h1>
             </div>
@@ -653,69 +697,98 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             {/* Center: 3-Way Mode Navigation Bar */}
             <nav
               aria-label="Mode Navigation"
-              className="flex items-center self-start md:self-end border border-[#111111]/20 font-mono text-xs"
+              className="flex items-center self-start md:self-end border border-[#111111]/20 dark:border-[#F4F3EE]/20 font-mono text-xs"
             >
               <button
                 type="button"
                 onClick={() => setMode('landing')}
                 className={`px-3 py-1.5 uppercase font-bold tracking-wider transition ${
                   mode === 'landing'
-                    ? 'bg-[#111111] text-[#F8F7F4]'
-                    : 'bg-transparent text-[#6E6D68] hover:text-[#111111]'
+                    ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210]'
+                    : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                 }`}
               >
                 AirShield 1.0
               </button>
-              <div className="w-[1px] h-6 bg-[#111111]/20" />
+              <div className="w-[1px] h-6 bg-[#111111]/20 dark:bg-[#F4F3EE]/20" />
               <button
                 type="button"
                 onClick={() => setMode('live')}
                 className={`px-3 py-1.5 uppercase font-bold tracking-wider transition ${
                   mode === 'live'
-                    ? 'bg-[#111111] text-[#F8F7F4]'
-                    : 'bg-transparent text-[#6E6D68] hover:text-[#111111]'
+                    ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210]'
+                    : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                 }`}
               >
                 {t('liveModeBtn')}
               </button>
-              <div className="w-[1px] h-6 bg-[#111111]/20" />
+              <div className="w-[1px] h-6 bg-[#111111]/20 dark:bg-[#F4F3EE]/20" />
               <button
                 type="button"
                 onClick={() => setMode('replay')}
                 className={`px-3 py-1.5 uppercase font-bold tracking-wider transition ${
                   mode === 'replay'
-                    ? 'bg-[#111111] text-[#F8F7F4]'
-                    : 'bg-transparent text-[#6E6D68] hover:text-[#111111]'
+                    ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210]'
+                    : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                 }`}
               >
                 {t('replayModeBtn')}
               </button>
             </nav>
 
-            {/* Right: Language Switcher & Upload / Schedule Info */}
-            <div className="flex items-center gap-3 text-xs font-mono self-start md:self-end">
+            {/* Right: Theme Switcher, Language Switcher & Upload / Schedule Info */}
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono self-start md:self-end">
+              {/* Theme Switcher: LIGHT | DARK */}
+              <div className="flex items-center border border-[#111111]/25 dark:border-[#F4F3EE]/25 font-mono text-[11px]">
+                <button
+                  type="button"
+                  onClick={() => setIsDark(false)}
+                  className={`px-2 py-1 font-bold tracking-wider transition ${
+                    !isDark
+                      ? 'bg-[#111111] text-[#F8F7F4]'
+                      : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
+                  }`}
+                  title={lang === 'hi' ? 'दिन (लाइट मोड)' : 'Light Paper Broadsheet'}
+                >
+                  {lang === 'hi' ? '☀ दिन' : '☀ LIGHT'}
+                </button>
+                <div className="w-[1px] h-4 bg-[#111111]/25 dark:bg-[#F4F3EE]/25" />
+                <button
+                  type="button"
+                  onClick={() => setIsDark(true)}
+                  className={`px-2 py-1 font-bold tracking-wider transition ${
+                    isDark
+                      ? 'bg-[#F4F3EE] text-[#121210]'
+                      : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
+                  }`}
+                  title={lang === 'hi' ? 'रात (डार्क मोड)' : 'Dark Inverted Broadsheet'}
+                >
+                  {lang === 'hi' ? '☾ रात' : '☾ DARK'}
+                </button>
+              </div>
+
               {/* Language Switcher: EN | हिन्दी */}
-              <div className="flex items-center border border-[#111111]/25 font-mono text-[11px]">
+              <div className="flex items-center border border-[#111111]/25 dark:border-[#F4F3EE]/25 font-mono text-[11px]">
                 <button
                   type="button"
                   onClick={() => setLang('en')}
                   className={`px-2.5 py-1 font-bold tracking-wider transition ${
                     lang === 'en'
-                      ? 'bg-[#111111] text-[#F8F7F4]'
-                      : 'bg-transparent text-[#6E6D68] hover:text-[#111111]'
+                      ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210]'
+                      : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                   }`}
                   title="English Language"
                 >
                   EN
                 </button>
-                <div className="w-[1px] h-4 bg-[#111111]/25" />
+                <div className="w-[1px] h-4 bg-[#111111]/25 dark:bg-[#F4F3EE]/25" />
                 <button
                   type="button"
                   onClick={() => setLang('hi')}
                   className={`px-2.5 py-1 font-bold font-sans transition ${
                     lang === 'hi'
-                      ? 'bg-[#111111] text-[#F8F7F4]'
-                      : 'bg-transparent text-[#6E6D68] hover:text-[#111111]'
+                      ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210]'
+                      : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                   }`}
                   title="हिन्दी भाषा चुनें"
                 >
@@ -727,7 +800,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="text-[11px] uppercase tracking-wider text-[#111111] hover:text-[#E13C2A] border-b border-[#111111]/40 pb-0.5 transition"
+                    className="text-[11px] uppercase tracking-wider text-[#111111] dark:text-[#F4F3EE] hover:text-[#E13C2A] dark:hover:text-[#FF4D36] border-b border-[#111111]/40 dark:border-[#F4F3EE]/40 pb-0.5 transition"
                   >
                     {t('uploadJson')}
                   </button>
@@ -740,7 +813,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   />
                 </div>
               ) : (
-                <div className="font-mono text-[11px] text-[#6E6D68]">
+                <div className="font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96]">
                   {t('refreshSchedule')}
                 </div>
               )}
@@ -748,7 +821,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
           </div>
 
           {uploadError && (
-            <div className="max-w-[1440px] mx-auto mt-2 font-mono text-xs text-[#E13C2A]">
+            <div className="max-w-[1440px] mx-auto mt-2 font-mono text-xs text-[#E13C2A] dark:text-[#FF4D36]">
               ERROR: {uploadError}
             </div>
           )}
@@ -766,47 +839,47 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             VIEW 1: AIRSHIELD 1.0 LANDING PAGE
             ========================================================================= */}
         {mode === 'landing' && (
-          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 flex-1 flex flex-col animate-fade-rise">
+          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex-1 flex flex-col animate-fade-rise transition-colors duration-150">
             {/* Hero Section */}
-            <div className="p-6 sm:p-10 lg:p-12 border-b border-[#111111]/15">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-[#111111]/15 font-mono text-xs text-[#6E6D68] uppercase">
-                <span className="font-bold text-[#111111] tracking-wider">{t('landingTag')}</span>
+            <div className="p-6 sm:p-10 lg:p-12 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] uppercase">
+                <span className="font-bold text-[#111111] dark:text-[#F4F3EE] tracking-wider">{t('landingTag')}</span>
                 <span>{t('landingSchool')}</span>
               </div>
 
               <div className="pt-8 pb-6 max-w-5xl">
-                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#111111] leading-tight font-normal">
+                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#111111] dark:text-[#F4F3EE] leading-tight font-normal">
                   {t('landingHeadline')}
                 </h2>
-                <p className="font-sans text-base sm:text-lg text-[#6E6D68] mt-6 leading-relaxed max-w-4xl">
+                <p className="font-sans text-base sm:text-lg text-[#6E6D68] dark:text-[#9E9D96] mt-6 leading-relaxed max-w-4xl">
                   {t('landingSubheadline')}
                 </p>
               </div>
 
               {/* Author & Institution Dossier: Equal Importance to Both Developers */}
-              <div className="pt-6 border-t border-[#111111]/15 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
-                <div className="p-4 border border-[#111111]/15 bg-[#111111]/[0.02]">
-                  <span className="text-[10px] text-[#6E6D68] uppercase block">CO-DEVELOPER // 01</span>
-                  <div className="mt-1 font-bold text-[#111111] text-sm">Swastik Divyanshu</div>
-                  <div className="text-[11px] text-[#6E6D68] mt-0.5">DAV Chandrasekharpur</div>
+              <div className="pt-6 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
+                <div className="p-4 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03]">
+                  <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">CO-DEVELOPER // 01</span>
+                  <div className="mt-1 font-bold text-[#111111] dark:text-[#F4F3EE] text-sm">Swastik Divyanshu</div>
+                  <div className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] mt-0.5">DAV Chandrasekharpur</div>
                 </div>
 
-                <div className="p-4 border border-[#111111]/15 bg-[#111111]/[0.02]">
-                  <span className="text-[10px] text-[#6E6D68] uppercase block">CO-DEVELOPER // 02</span>
-                  <div className="mt-1 font-bold text-[#111111] text-sm">Krishnendu Patro</div>
-                  <div className="text-[11px] text-[#6E6D68] mt-0.5">DAV Chandrasekharpur</div>
+                <div className="p-4 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03]">
+                  <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">CO-DEVELOPER // 02</span>
+                  <div className="mt-1 font-bold text-[#111111] dark:text-[#F4F3EE] text-sm">Krishnendu Patro</div>
+                  <div className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] mt-0.5">DAV Chandrasekharpur</div>
                 </div>
 
-                <div className="p-4 border border-[#111111]/15 bg-[#111111]/[0.02]">
-                  <span className="text-[10px] text-[#6E6D68] uppercase block">INSTITUTION</span>
-                  <div className="mt-1 font-bold text-[#111111] text-sm">DAV Public School</div>
-                  <div className="text-[11px] text-[#6E6D68] mt-0.5">Chandrasekharpur, Bhubaneswar</div>
+                <div className="p-4 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03]">
+                  <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">INSTITUTION</span>
+                  <div className="mt-1 font-bold text-[#111111] dark:text-[#F4F3EE] text-sm">DAV Public School</div>
+                  <div className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] mt-0.5">Chandrasekharpur, Bhubaneswar</div>
                 </div>
 
-                <div className="p-4 border border-[#111111]/15 bg-[#111111]/[0.02]">
-                  <span className="text-[10px] text-[#6E6D68] uppercase block">CORE VALIDATION</span>
-                  <div className="mt-1 font-bold text-[#15803D] text-sm">97.5% Accuracy</div>
-                  <div className="text-[11px] text-[#6E6D68] mt-0.5">96.9% Recall • 2 False Alarms</div>
+                <div className="p-4 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03]">
+                  <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">CORE VALIDATION</span>
+                  <div className="mt-1 font-bold text-[#15803D] dark:text-[#22C55E] text-sm">97.5% Accuracy</div>
+                  <div className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] mt-0.5">96.9% Recall • 2 False Alarms</div>
                 </div>
               </div>
 
@@ -815,15 +888,15 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <button
                   type="button"
                   onClick={() => setMode('live')}
-                  className="p-6 text-left border-2 border-[#111111] hover:bg-[#111111] hover:text-[#F8F7F4] transition duration-200 group"
+                  className="p-6 text-left border-2 border-[#111111] dark:border-[#F4F3EE] hover:bg-[#111111] hover:text-[#F8F7F4] dark:hover:bg-[#F4F3EE] dark:hover:text-[#121210] transition duration-200 group"
                 >
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#E13C2A] group-hover:text-[#F8F7F4] font-bold">
+                  <div className="font-mono text-xs uppercase tracking-wider text-[#E13C2A] dark:text-[#FF4D36] group-hover:text-[#F8F7F4] dark:group-hover:text-[#121210] font-bold">
                     OPERATIONAL DEPLOYMENT
                   </div>
-                  <div className="font-serif text-2xl sm:text-3xl mt-1 text-[#111111] group-hover:text-[#F8F7F4]">
+                  <div className="font-serif text-2xl sm:text-3xl mt-1 text-[#111111] dark:text-[#F4F3EE] group-hover:text-[#F8F7F4] dark:group-hover:text-[#121210]">
                     {t('landingCtaLive')}
                   </div>
-                  <p className="font-sans text-xs mt-2 text-[#6E6D68] group-hover:text-[#F8F7F4]/80">
+                  <p className="font-sans text-xs mt-2 text-[#6E6D68] dark:text-[#9E9D96] group-hover:text-[#F8F7F4]/80 dark:group-hover:text-[#121210]/80">
                     {t('landingCtaLiveSub')}
                   </p>
                 </button>
@@ -831,15 +904,15 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <button
                   type="button"
                   onClick={() => setMode('replay')}
-                  className="p-6 text-left border border-[#111111] hover:bg-[#111111] hover:text-[#F8F7F4] transition duration-200 group bg-[#111111]/[0.015]"
+                  className="p-6 text-left border border-[#111111] dark:border-[#F4F3EE] hover:bg-[#111111] hover:text-[#F8F7F4] dark:hover:bg-[#F4F3EE] dark:hover:text-[#121210] transition duration-200 group bg-[#111111]/[0.015] dark:bg-[#F4F3EE]/[0.02]"
                 >
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] group-hover:text-[#F8F7F4] font-bold">
+                  <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] group-hover:text-[#F8F7F4] dark:group-hover:text-[#121210] font-bold">
                     EMPIRICAL AUDIT TRAIL
                   </div>
-                  <div className="font-serif text-2xl sm:text-3xl mt-1 text-[#111111] group-hover:text-[#F8F7F4]">
+                  <div className="font-serif text-2xl sm:text-3xl mt-1 text-[#111111] dark:text-[#F4F3EE] group-hover:text-[#F8F7F4] dark:group-hover:text-[#121210]">
                     {t('landingCtaReplay')}
                   </div>
-                  <p className="font-sans text-xs mt-2 text-[#6E6D68] group-hover:text-[#F8F7F4]/80">
+                  <p className="font-sans text-xs mt-2 text-[#6E6D68] dark:text-[#9E9D96] group-hover:text-[#F8F7F4]/80 dark:group-hover:text-[#121210]/80">
                     {t('landingCtaReplaySub')}
                   </p>
                 </button>
@@ -847,29 +920,29 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             </div>
 
             {/* Detailed Project Overview Grid (5 Pillars) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#111111]/15">
+            <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#111111]/15 dark:divide-[#F4F3EE]/15">
               {/* Pillar 1 & 2 (Left) */}
               <div className="lg:col-span-6 p-6 sm:p-10 space-y-10">
                 <section>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                     {t('landingSec1Title')}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-1 mb-3">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-1 mb-3">
                     {t('landingSec1Sub')}
                   </h3>
-                  <p className="font-sans text-sm text-[#111111] leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] leading-relaxed">
                     {t('landingSec1Text')}
                   </p>
                 </section>
 
-                <section className="pt-8 border-t border-[#111111]/15">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                <section className="pt-8 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                     {t('landingSec2Title')}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-1 mb-3">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-1 mb-3">
                     {t('landingSec2Sub')}
                   </h3>
-                  <p className="font-sans text-sm text-[#111111] leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] leading-relaxed">
                     {t('landingSec2Text')}
                   </p>
                 </section>
@@ -878,37 +951,37 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
               {/* Pillar 3, 4 & 5 (Right) */}
               <div className="lg:col-span-6 p-6 sm:p-10 space-y-10">
                 <section>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                     {t('landingSec3Title')}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-1 mb-3">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-1 mb-3">
                     {t('landingSec3Sub')}
                   </h3>
-                  <p className="font-sans text-sm text-[#111111] leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] leading-relaxed">
                     {t('landingSec3Text')}
                   </p>
                 </section>
 
-                <section className="pt-8 border-t border-[#111111]/15">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                <section className="pt-8 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                     {t('landingSec4Title')}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-1 mb-3">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-1 mb-3">
                     {t('landingSec4Sub')}
                   </h3>
-                  <p className="font-sans text-sm text-[#111111] leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] leading-relaxed">
                     {t('landingSec4Text')}
                   </p>
                 </section>
 
-                <section className="pt-8 border-t border-[#111111]/15">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                <section className="pt-8 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                     {t('landingSec5Title')}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-1 mb-3">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-1 mb-3">
                     {t('landingSec5Sub')}
                   </h3>
-                  <p className="font-sans text-sm text-[#111111] leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] leading-relaxed">
                     {t('landingSec5Text')}
                   </p>
                 </section>
@@ -916,56 +989,56 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             </div>
 
             {/* Developer & Institution Credits Section (Equal Importance to Both Developers) */}
-            <div className="border-t border-[#111111]/15 p-6 sm:p-10 bg-[#111111]/[0.015]">
-              <div className="pb-3 border-b border-[#111111]/15 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <div className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 p-6 sm:p-10 bg-[#111111]/[0.015] dark:bg-[#F4F3EE]/[0.02]">
+              <div className="pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68]">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96]">
                     {lang === 'hi' ? 'परियोजना सह-विकासकर्ता व शोधकर्ता' : 'PROJECT CO-DEVELOPERS & RESEARCHERS'}
                   </span>
-                  <h3 className="font-serif text-2xl text-[#111111] mt-0.5">
+                  <h3 className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                     {lang === 'hi' ? 'समान सहयोग व संस्थान विवरण' : 'Equal Collaboration & Institutional Affiliation'}
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-[#6E6D68]">
+                <span className="font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                   DAV CHANDRASEKHARPUR BHUBANESWAR
                 </span>
               </div>
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
                 {/* Developer 1: Swastik Divyanshu */}
-                <div className="p-6 border border-[#111111]/15 bg-[#F8F7F4] flex flex-col justify-between">
+                <div className="p-6 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#F8F7F4] dark:bg-[#181816] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between border-b border-[#111111]/15 pb-2">
-                      <span className="text-[10px] text-[#6E6D68] uppercase tracking-wider">CO-DEVELOPER // 01</span>
-                      <span className="text-[10px] text-[#15803D] font-bold">CORE AUTHOR</span>
+                    <div className="flex items-center justify-between border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 pb-2">
+                      <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase tracking-wider">CO-DEVELOPER // 01</span>
+                      <span className="text-[10px] text-[#15803D] dark:text-[#22C55E] font-bold">CORE AUTHOR</span>
                     </div>
-                    <div className="font-serif text-2xl text-[#111111] mt-3">Swastik Divyanshu</div>
-                    <p className="font-sans text-xs text-[#6E6D68] mt-2 leading-relaxed">
+                    <div className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-3">Swastik Divyanshu</div>
+                    <p className="font-sans text-xs text-[#6E6D68] dark:text-[#9E9D96] mt-2 leading-relaxed">
                       {lang === 'hi'
                         ? 'मशीन लर्निंग आर्किटेक्चर, असंतुलित बाल स्वास्थ्य सुरक्षा बफर और पूर्ण-स्टैक स्विस संपादकीय इंटरफेस का सह-विकास।'
                         : 'Co-development of machine learning architecture, pediatric safety buffer optimization, and the Swiss editorial interface.'}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#111111]/10 text-[11px] text-[#111111] font-bold">
+                  <div className="mt-4 pt-3 border-t border-[#111111]/10 dark:border-[#F4F3EE]/10 text-[11px] text-[#111111] dark:text-[#F4F3EE] font-bold">
                     DAV Public School, Chandrasekharpur
                   </div>
                 </div>
 
                 {/* Developer 2: Krishnendu Patro */}
-                <div className="p-6 border border-[#111111]/15 bg-[#F8F7F4] flex flex-col justify-between">
+                <div className="p-6 border border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#F8F7F4] dark:bg-[#181816] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between border-b border-[#111111]/15 pb-2">
-                      <span className="text-[10px] text-[#6E6D68] uppercase tracking-wider">CO-DEVELOPER // 02</span>
-                      <span className="text-[10px] text-[#15803D] font-bold">CORE AUTHOR</span>
+                    <div className="flex items-center justify-between border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 pb-2">
+                      <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase tracking-wider">CO-DEVELOPER // 02</span>
+                      <span className="text-[10px] text-[#15803D] dark:text-[#22C55E] font-bold">CORE AUTHOR</span>
                     </div>
-                    <div className="font-serif text-2xl text-[#111111] mt-3">Krishnendu Patro</div>
-                    <p className="font-sans text-xs text-[#6E6D68] mt-2 leading-relaxed">
+                    <div className="font-serif text-2xl text-[#111111] dark:text-[#F4F3EE] mt-3">Krishnendu Patro</div>
+                    <p className="font-sans text-xs text-[#6E6D68] dark:text-[#9E9D96] mt-2 leading-relaxed">
                       {lang === 'hi'
                         ? 'मौसम विज्ञान डेटा पाइपलाइन, 80% सांख्यिकीय अंतराल गणना और स्वचालित गिटहब एक्शन्स का सह-विकास।'
                         : 'Co-development of meteorological data pipeline, 80% statistical interval evaluation, and automated GitHub Actions.'}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#111111]/10 text-[11px] text-[#111111] font-bold">
+                  <div className="mt-4 pt-3 border-t border-[#111111]/10 dark:border-[#F4F3EE]/10 text-[11px] text-[#111111] dark:text-[#F4F3EE] font-bold">
                     DAV Public School, Chandrasekharpur
                   </div>
                 </div>
@@ -978,10 +1051,10 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             VIEW 2: LIVE FORECAST MODE (UNVERIFIED NEXT-DAY OPERATIONAL FORECAST)
             ========================================================================= */}
         {mode === 'live' && (
-          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 flex-1 flex flex-col animate-fade-rise">
+          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex-1 flex flex-col animate-fade-rise transition-colors duration-150">
             {/* Stale warning banner if generated_at is > 24 hours old */}
             {liveStaleInfo.isStale && (
-              <div className="bg-[#E13C2A]/10 border-b border-[#E13C2A]/30 px-6 sm:px-8 py-2.5 font-mono text-xs text-[#E13C2A] flex items-center justify-between">
+              <div className="bg-[#E13C2A]/10 dark:bg-[#FF4D36]/10 border-b border-[#E13C2A]/30 dark:border-[#FF4D36]/30 px-6 sm:px-8 py-2.5 font-mono text-xs text-[#E13C2A] dark:text-[#FF4D36] flex items-center justify-between">
                 <span>
                   ⚠ {t('staleWarning', { hours: liveStaleInfo.diffHours, time: liveStaleInfo.istString })}
                 </span>
@@ -993,7 +1066,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
 
             {/* Live fetch error / unavailable state */}
             {liveLoading && (
-              <div className="p-12 text-center font-mono text-xs text-[#6E6D68]">
+              <div className="p-12 text-center font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                 {lang === 'hi'
                   ? 'नवीनतम स्टेशन प्रेक्षणों का अंतर्ग्रहण व मॉडल पूर्वानुमान तैयार किया जा रहा है...'
                   : 'INGESTING LATEST STATION OBSERVATIONS & REFRESHING MODEL INFERENCE...'}
@@ -1002,22 +1075,22 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
 
             {!liveLoading && (liveError || liveData?.status === 'unavailable') && (
               <div className="p-8 sm:p-12 font-mono space-y-4">
-                <div className="border border-[#E13C2A] p-6 max-w-2xl bg-[#E13C2A]/[0.03]">
-                  <div className="text-xs uppercase tracking-widest text-[#E13C2A] font-bold">
+                <div className="border border-[#E13C2A] dark:border-[#FF4D36] p-6 max-w-2xl bg-[#E13C2A]/[0.03] dark:bg-[#FF4D36]/[0.05]">
+                  <div className="text-xs uppercase tracking-widest text-[#E13C2A] dark:text-[#FF4D36] font-bold">
                     {t('liveUnavailableTitle')}
                   </div>
-                  <p className="font-sans text-sm text-[#111111] mt-2 leading-relaxed">
+                  <p className="font-sans text-sm text-[#111111] dark:text-[#F4F3EE] mt-2 leading-relaxed">
                     {liveError
                       ? (lang === 'hi' ? `डेटा अंतर्ग्रहण त्रुटि: ${liveError}` : `Live ingest error: ${liveError}.`)
                       : t('liveUnavailableMsg')}
                   </p>
-                  <div className="mt-4 pt-4 border-t border-[#111111]/15 flex flex-wrap items-center justify-between gap-3 text-xs">
-                    <span className="text-[#6E6D68]">
+                  <div className="mt-4 pt-4 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <span className="text-[#6E6D68] dark:text-[#9E9D96]">
                       {lang === 'hi' ? 'कोई अवास्तविक संख्या नहीं गढ़ी जाती।' : 'No ungrounded numbers are invented.'}
                     </span>
                     <button
                       onClick={() => setMode('replay')}
-                      className="font-bold text-[#111111] hover:text-[#E13C2A] underline underline-offset-4"
+                      className="font-bold text-[#111111] dark:text-[#F4F3EE] hover:text-[#E13C2A] dark:hover:text-[#FF4D36] underline underline-offset-4"
                     >
                       [ {t('switchReplayBtn')} → ]
                     </button>
@@ -1033,30 +1106,30 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   {/* --------------------------------------
                       LEFT COLUMN (38%): Verdict & Directives
                       -------------------------------------- */}
-                  <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#111111]/15 p-6 sm:p-8 flex flex-col justify-between">
+                  <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 p-6 sm:p-8 flex flex-col justify-between">
                     <div>
                       {/* Meta Stamp Header */}
-                      <div className="flex items-center justify-between font-mono text-xs text-[#6E6D68] uppercase pb-3 border-b border-[#111111]/15">
+                      <div className="flex items-center justify-between font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] uppercase pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15">
                         <span>{lang === 'hi' ? `पूर्वानुमान // ${liveData.forecast_for}` : `FORECAST FOR // ${liveData.forecast_for}`}</span>
                         <span>{lang === 'hi' ? `जारी // ${liveData.issued_on} (IST)` : `ISSUED // ${liveData.issued_on} (IST)`}</span>
                       </div>
 
                       {/* Massive Hero PM2.5 Number with CountUp */}
                       <div className="pt-6 pb-4">
-                        <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] mb-1">
+                        <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] mb-1">
                           {t('projectedNextDay')}
                         </div>
                         <div className="flex items-baseline gap-3">
-                          <span className="font-serif text-7xl sm:text-8xl md:text-[92px] leading-none text-[#111111] tabular-nums tracking-tight">
+                          <span className="font-serif text-7xl sm:text-8xl md:text-[92px] leading-none text-[#111111] dark:text-[#F4F3EE] tabular-nums tracking-tight">
                             <HeroCounter targetValue={liveData.model} disabled={prefersReducedMotion} />
                           </span>
-                          <span className="font-mono text-sm sm:text-base text-[#6E6D68] normal-case">
+                          <span className="font-mono text-sm sm:text-base text-[#6E6D68] dark:text-[#9E9D96] normal-case">
                             µg/m³
                           </span>
                         </div>
-                        <div className="font-mono text-xs text-[#6E6D68] mt-2 flex items-center gap-2">
+                        <div className="font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] mt-2 flex items-center gap-2">
                           <span>{t('intervalLabel')}</span>
-                          <strong className="text-[#111111] font-mono">
+                          <strong className="text-[#111111] dark:text-[#F4F3EE] font-mono">
                             {fmt(liveData.lower_80 ?? liveData.lower)} – {fmt(liveData.upper_80 ?? liveData.upper)} <span className="normal-case">µg/m³</span>
                           </strong>
                         </div>
@@ -1066,31 +1139,31 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       <div className="my-4">
                         {isLiveAlert ? (
                           <div
-                            className={`border-2 border-[#E13C2A] px-3.5 py-2 inline-block ${
+                            className={`border-2 border-[#E13C2A] dark:border-[#FF4D36] px-3.5 py-2 inline-block ${
                               !prefersReducedMotion ? 'animate-alert-pulse' : ''
                             }`}
                           >
-                            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E13C2A]">
+                            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E13C2A] dark:text-[#FF4D36]">
                               {t('alertStamp')}
                             </span>
                           </div>
                         ) : (
-                          <div className="border-2 border-[#15803D] px-3.5 py-2 inline-block">
-                            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#15803D]">
+                          <div className="border-2 border-[#15803D] dark:border-[#22C55E] px-3.5 py-2 inline-block">
+                            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#15803D] dark:text-[#22C55E]">
                               {t('noAlertStamp')}
                             </span>
                           </div>
                         )}
 
                         {liveData.in_diwali_window && (
-                          <span className="ml-2 font-mono text-[11px] font-bold text-[#E13C2A] uppercase border border-[#E13C2A]/40 px-2 py-1 align-middle">
+                          <span className="ml-2 font-mono text-[11px] font-bold text-[#E13C2A] dark:text-[#FF4D36] uppercase border border-[#E13C2A]/40 dark:border-[#FF4D36]/40 px-2 py-1 align-middle">
                             {lang === 'hi' ? '★ दीवाली अवधि' : '★ DIWALI WINDOW'}
                           </span>
                         )}
                       </div>
 
                       {/* Concise 2-Sentence Briefing */}
-                      <p className="font-serif text-base sm:text-lg text-[#111111] leading-snug my-4">
+                      <p className="font-serif text-base sm:text-lg text-[#111111] dark:text-[#F4F3EE] leading-snug my-4">
                         {isLiveAlert
                           ? (lang === 'hi'
                               ? `कल के लिए अनुमानित ${fmt(liveData.model)} µg/m³ सांद्रता राष्ट्रीय मानक (${liveData.threshold} µg/m³) से ${(liveData.model - liveData.threshold).toFixed(1)} µg/m³ अधिक है। सुबह के समय खुली हवा में शारीरिक श्रम से छात्रों के श्वसन स्वास्थ्य पर तत्काल जोखिम हो सकता है।`
@@ -1101,28 +1174,28 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       </p>
 
                       {/* Clean Typographic 4-Row Directives Table with Staggered Entrance */}
-                      <div className="border-t border-[#111111]/15 mt-6 font-mono text-xs">
-                        <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                          <span className="text-[#6E6D68] uppercase">{t('assemblyLabel')}</span>
-                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                      <div className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 mt-6 font-mono text-xs">
+                        <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('assemblyLabel')}</span>
+                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                             {isLiveAlert ? t('assemblyAlert') : t('assemblySafe')}
                           </span>
                         </div>
-                        <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                          <span className="text-[#6E6D68] uppercase">{t('sportsLabel')}</span>
-                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                        <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('sportsLabel')}</span>
+                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                             {isLiveAlert ? t('sportsAlert') : t('sportsSafe')}
                           </span>
                         </div>
-                        <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                          <span className="text-[#6E6D68] uppercase">{t('recessLabel')}</span>
-                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                        <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('recessLabel')}</span>
+                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                             {isLiveAlert ? t('recessAlert') : t('recessSafe')}
                           </span>
                         </div>
-                        <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                          <span className="text-[#6E6D68] uppercase">{t('infirmaryLabel')}</span>
-                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A]' : 'text-[#111111]'}`}>
+                        <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('infirmaryLabel')}</span>
+                          <span className={`font-bold ${isLiveAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#111111] dark:text-[#F4F3EE]'}`}>
                             {isLiveAlert ? t('infirmaryAlert') : t('infirmarySafe')}
                           </span>
                         </div>
@@ -1130,7 +1203,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                     </div>
 
                     {/* Attribution Line */}
-                    <div className="pt-6 font-mono text-[11px] text-[#6E6D68] flex justify-between items-center">
+                    <div className="pt-6 font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96] flex justify-between items-center">
                       <span>
                         <span className="uppercase">{lang === 'hi' ? 'नियम: कैलिब्रेटेड सुरक्षा बफर (मॉडल + 6 >' : 'RULE: CALIBRATED SAFETY BUFFER (MODEL + 6 >'}</span> {liveData.threshold} <span className="normal-case">µg/m³</span>)
                       </span>
@@ -1143,66 +1216,66 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       -------------------------------------- */}
                   <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
                     <div className="space-y-6">
-                      <div className="pb-3 border-b border-[#111111]/15">
-                        <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] block">
+                      <div className="pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15">
+                        <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                           {lang === 'hi' ? 'स्थिति // असत्यापित परिचालन पूर्वानुमान' : 'STATUS // UNVERIFIED OPERATIONAL FORECAST'}
                         </span>
-                        <h2 className="font-serif text-xl sm:text-2xl text-[#111111] mt-0.5">
+                        <h2 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                           {t('liveStatusTitle')}
                         </h2>
                       </div>
 
                       {/* Transparency Disclaimers */}
-                      <div className="border border-[#111111]/15 p-5 font-mono text-xs space-y-3 bg-[#111111]/[0.02]">
-                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 pb-2">
-                          <span className="text-[#6E6D68] uppercase">{t('ingestTimestamp')}</span>
-                          <span className="font-bold text-[#111111]">{liveStaleInfo.istString}</span>
+                      <div className="border border-[#111111]/15 dark:border-[#F4F3EE]/15 p-5 font-mono text-xs space-y-3 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03]">
+                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 pb-2">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('ingestTimestamp')}</span>
+                          <span className="font-bold text-[#111111] dark:text-[#F4F3EE]">{liveStaleInfo.istString}</span>
                         </div>
-                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 pb-2">
-                          <span className="text-[#6E6D68] uppercase">{t('latestObservation')}</span>
-                          <span className="font-bold text-[#111111]">
+                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 pb-2">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('latestObservation')}</span>
+                          <span className="font-bold text-[#111111] dark:text-[#F4F3EE]">
                             {fmt(liveData.pm25_today)} <span className="normal-case">µg/m³</span> ({lang === 'hi' ? 'दिनांक' : 'on'} {liveData.issued_on})
                           </span>
                         </div>
-                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 pb-2">
-                          <span className="text-[#6E6D68] uppercase">{t('uncertaintyBounds')}</span>
-                          <span className="text-[#111111]">
+                        <div className="flex justify-between items-baseline border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 pb-2">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('uncertaintyBounds')}</span>
+                          <span className="text-[#111111] dark:text-[#F4F3EE]">
                             {lang === 'hi' ? 'प्रशिक्षण अवशिष्टों से 80% दायरा (±20.7 µg/m³)' : '80% interval from training residuals (fixed width: ±20.7 µg/m³)'}
                           </span>
                         </div>
                         <div className="flex justify-between items-baseline">
-                          <span className="text-[#6E6D68] uppercase">{t('trainingHorizon')}</span>
-                          <span className="text-[#111111]">
+                          <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('trainingHorizon')}</span>
+                          <span className="text-[#111111] dark:text-[#F4F3EE]">
                             {lang === 'hi' ? `उत्पादन मॉडल: ${liveData.model_trained_through} तक प्रशिक्षित` : `Production model trained through ${liveData.model_trained_through}`}
                           </span>
                         </div>
                       </div>
 
-                      <p className="font-sans text-xs text-[#6E6D68] leading-relaxed">
+                      <p className="font-sans text-xs text-[#6E6D68] dark:text-[#9E9D96] leading-relaxed">
                         {t('liveHonestyNote')}
                       </p>
 
                       {/* Operational Advisory Box in Live Mode */}
-                      <div className="border border-[#111111] p-4 font-mono text-xs space-y-2">
-                        <div className="flex items-baseline justify-between border-b border-[#111111]/20 pb-1.5 text-[10px] text-[#6E6D68]">
+                      <div className="border border-[#111111] dark:border-[#F4F3EE] p-4 font-mono text-xs space-y-2">
+                        <div className="flex items-baseline justify-between border-b border-[#111111]/20 dark:border-[#F4F3EE]/20 pb-1.5 text-[10px] text-[#6E6D68] dark:text-[#9E9D96]">
                           <span>{lang === 'hi' ? `समन्वयक निर्देश // ${liveData.forecast_for} हेतु` : `COORDINATOR ADVISORY // FOR ${liveData.forecast_for}`}</span>
                           <div className="flex items-center gap-2">
                             <button
                               type="button"
                               onClick={generateAdvisory}
                               disabled={advisoryLoading}
-                              className="text-[#E13C2A] font-bold hover:underline"
+                              className="text-[#E13C2A] dark:text-[#FF4D36] font-bold hover:underline"
                             >
                               {advisoryLoading ? t('sec4Generating') : t('sec4GenerateBtn')}
                             </button>
                             {advisory && (
-                              <button onClick={copyAdvisory} className="text-[#111111] font-bold hover:text-[#E13C2A]">
+                              <button onClick={copyAdvisory} className="text-[#111111] dark:text-[#F4F3EE] font-bold hover:text-[#E13C2A] dark:hover:text-[#FF4D36]">
                                 {advisoryCopied ? t('sec4CopiedBtn') : t('sec4CopyBtn')}
                               </button>
                             )}
                           </div>
                         </div>
-                        <p className="font-serif text-base text-[#111111] leading-relaxed pt-1">
+                        <p className="font-serif text-base text-[#111111] dark:text-[#F4F3EE] leading-relaxed pt-1">
                           "{advisory || (isLiveAlert
                             ? (lang === 'hi'
                                 ? `अनुशंसित निर्देश: कल अनुमानित PM2.5 स्तर ${fmt(liveData.model)} µg/m³ है। बाहरी प्रार्थना सभा व खेलकूद स्थगित करें।`
@@ -1214,9 +1287,9 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#111111]/15 flex items-center justify-between text-xs font-mono text-[#6E6D68]">
+                    <div className="pt-4 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-center justify-between text-xs font-mono text-[#6E6D68] dark:text-[#9E9D96]">
                       <span>{lang === 'hi' ? 'स्वचालन // गिटहब एक्शन्स द्वारा प्रतिदिन 4 बार' : 'AUTOMATION CADENCE // 4× DAILY VIA GITHUB ACTIONS'}</span>
-                      <button onClick={() => setMode('replay')} className="text-[#111111] underline font-bold">
+                      <button onClick={() => setMode('replay')} className="text-[#111111] dark:text-[#F4F3EE] underline font-bold">
                         {lang === 'hi' ? '120-दिवसीय टेस्ट रीप्ले मूल्यांकन देखें →' : 'View 120-Day Held-Out Test Evaluation →'}
                       </button>
                     </div>
@@ -1224,57 +1297,57 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 </div>
 
                 {/* Ticker Strip for Live Mode */}
-                <div className="border-t border-[#111111]/15 grid grid-cols-2 md:grid-cols-4 font-mono divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 text-xs">
-                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                    <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerModel')}</span>
+                <div className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 grid grid-cols-2 md:grid-cols-4 font-mono divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 dark:divide-[#F4F3EE]/15 text-xs">
+                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerModel')}</span>
                     <div className="mt-1 flex items-baseline gap-1">
-                      <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                      <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                         {fmt(liveData.model)}
                       </span>
-                      <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                      <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                     </div>
-                    <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                       {t('tickerForecastFor')} {liveData.forecast_for}
                     </span>
                   </div>
 
-                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                    <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerInterval')}</span>
+                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerInterval')}</span>
                     <div className="mt-1 flex items-baseline gap-1">
-                      <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                      <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                         {fmt(liveData.lower_80 ?? liveData.lower)} – {fmt(liveData.upper_80 ?? liveData.upper)}
                       </span>
-                      <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                      <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                     </div>
-                    <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                       {t('tickerSpread')} {fmt((liveData.upper_80 ?? liveData.upper) - (liveData.lower_80 ?? liveData.lower))} <span className="normal-case">µg/m³</span>
                     </span>
                   </div>
 
-                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                    <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerBaseline')}</span>
+                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerBaseline')}</span>
                     <div className="mt-1 flex items-baseline gap-1">
-                      <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                      <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                         {fmt(liveData.baseline)}
                       </span>
-                      <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                      <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                     </div>
-                    <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                       {t('tickerObserved')} {liveData.issued_on}
                     </span>
                   </div>
 
-                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                    <span className="text-[10px] text-[#6E6D68] uppercase block">
+                  <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">
                       {lang === 'hi' ? '04 // मॉडल स्थिति' : '04 // MODEL STATUS'}
                     </span>
                     <div className="mt-1 flex items-baseline gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#15803D] inline-block mb-0.5"></span>
-                      <span className="text-base sm:text-lg font-bold text-[#15803D] tracking-wide">
+                      <span className="w-2 h-2 rounded-full bg-[#15803D] dark:bg-[#22C55E] inline-block mb-0.5"></span>
+                      <span className="text-base sm:text-lg font-bold text-[#15803D] dark:text-[#22C55E] tracking-wide">
                         {lang === 'hi' ? 'सक्रिय' : 'ACTIVE'}
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                       {lang === 'hi' ? `उत्पादन मॉडल • ${liveData.model_trained_through} तक प्रशिक्षित` : `Production • Trained through ${liveData.model_trained_through}`}
                     </span>
                   </div>
@@ -1288,14 +1361,14 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             VIEW 3: HELD-OUT REPLAY MODE (EVALUATED HISTORICAL BENCHMARKING)
             ========================================================================= */}
         {mode === 'replay' && currentDay && (
-          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 flex-1 flex flex-col animate-fade-rise">
+          <main className="max-w-[1440px] mx-auto w-full border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex-1 flex flex-col animate-fade-rise transition-colors duration-150">
             {/* Replay Date Navigation Bar */}
-            <div className="border-b border-[#111111]/15 px-6 sm:px-8 py-3 bg-[#111111]/[0.02] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-              <div className="flex items-center gap-1 border-b border-[#111111] pb-0.5">
+            <div className="border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 px-6 sm:px-8 py-3 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <div className="flex items-center gap-1 border-b border-[#111111] dark:border-[#F4F3EE] pb-0.5">
                 <button
                   onClick={handlePrevDay}
                   disabled={currentDayIndex <= 0}
-                  className="hover:text-[#E13C2A] disabled:opacity-30 px-1 font-bold"
+                  className="hover:text-[#E13C2A] dark:hover:text-[#FF4D36] disabled:opacity-30 px-1 font-bold"
                   title="Previous Day"
                 >
                   ←
@@ -1303,7 +1376,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <select
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="bg-transparent text-[#111111] font-mono font-bold text-xs focus:outline-none cursor-pointer pr-1"
+                  className="bg-transparent text-[#111111] dark:text-[#F4F3EE] font-mono font-bold text-xs focus:outline-none cursor-pointer pr-1"
                 >
                   {data.days &&
                     data.days.map((d) => {
@@ -1313,7 +1386,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                         ? Boolean(d.alert_80 ?? d.alert)
                         : Boolean(d.alert_calibrated ?? d.alert);
                       return (
-                        <option key={d.date} value={d.date} className="bg-[#F8F7F4] text-[#111111] font-mono">
+                        <option key={d.date} value={d.date} className="bg-[#F8F7F4] dark:bg-[#181816] text-[#111111] dark:text-[#F4F3EE] font-mono">
                           {d.date} {d.in_diwali_window ? '• Diwali' : ''} {hasAlert ? '• Alert' : ''}
                         </option>
                       );
@@ -1322,30 +1395,30 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 <button
                   onClick={handleNextDay}
                   disabled={currentDayIndex < 0 || currentDayIndex >= (data.days?.length || 0) - 1}
-                  className="hover:text-[#E13C2A] disabled:opacity-30 px-1 font-bold"
+                  className="hover:text-[#E13C2A] dark:hover:text-[#FF4D36] disabled:opacity-30 px-1 font-bold"
                   title="Next Day"
                 >
                   →
                 </button>
               </div>
 
-              <div className="flex items-center gap-3 text-[11px] text-[#6E6D68]">
+              <div className="flex items-center gap-3 text-[11px] text-[#6E6D68] dark:text-[#9E9D96]">
                 <span>{t('jumpLabel')}</span>
                 <button
                   onClick={handleJumpDiwali}
-                  className="hover:text-[#E13C2A] underline underline-offset-2 decoration-[#111111]/30 hover:decoration-[#E13C2A]"
+                  className="hover:text-[#E13C2A] dark:hover:text-[#FF4D36] underline underline-offset-2 decoration-[#111111]/30 dark:decoration-[#F4F3EE]/30 hover:decoration-[#E13C2A] dark:hover:decoration-[#FF4D36]"
                 >
                   {t('jumpDiwali')}
                 </button>
                 <button
                   onClick={handleJumpPeak}
-                  className="hover:text-[#E13C2A] underline underline-offset-2 decoration-[#111111]/30 hover:decoration-[#E13C2A]"
+                  className="hover:text-[#E13C2A] dark:hover:text-[#FF4D36] underline underline-offset-2 decoration-[#111111]/30 dark:decoration-[#F4F3EE]/30 hover:decoration-[#E13C2A] dark:hover:decoration-[#FF4D36]"
                 >
                   {t('jumpPeak')}
                 </button>
                 <button
                   onClick={handleJumpCleanest}
-                  className="hover:text-[#15803D] underline underline-offset-2 decoration-[#111111]/30 hover:decoration-[#15803D]"
+                  className="hover:text-[#15803D] dark:hover:text-[#22C55E] underline underline-offset-2 decoration-[#111111]/30 dark:decoration-[#F4F3EE]/30 hover:decoration-[#15803D] dark:hover:decoration-[#22C55E]"
                 >
                   {t('jumpClean')}
                 </button>
@@ -1356,30 +1429,30 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
               {/* --------------------------------------
                   LEFT COLUMN (38% width: cols 1 to 5)
                   -------------------------------------- */}
-              <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#111111]/15 p-6 sm:p-8 flex flex-col justify-between">
+              <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 p-6 sm:p-8 flex flex-col justify-between">
                 <div>
                   {/* Meta Stamp Header */}
-                  <div className="flex items-center justify-between font-mono text-xs text-[#6E6D68] uppercase pb-3 border-b border-[#111111]/15">
+                  <div className="flex items-center justify-between font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] uppercase pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15">
                     <span>{lang === 'hi' ? `लक्ष्य तिथि // ${currentDay.date}` : `TARGET DATE // ${currentDay.date}`}</span>
                     <span>{lang === 'hi' ? `जारी // ${currentDay.issued_on}` : `ISSUED // ${currentDay.issued_on}`}</span>
                   </div>
 
                   {/* Massive Hero PM2.5 Number with CountUp */}
                   <div className="pt-6 pb-4">
-                    <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] mb-1">
+                    <div className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96] mb-1">
                       {t('projectedMean')}
                     </div>
                     <div className="flex items-baseline gap-3">
-                      <span className="font-serif text-7xl sm:text-8xl md:text-[92px] leading-none text-[#111111] tabular-nums tracking-tight">
+                      <span className="font-serif text-7xl sm:text-8xl md:text-[92px] leading-none text-[#111111] dark:text-[#F4F3EE] tabular-nums tracking-tight">
                         <HeroCounter targetValue={currentDay.model} disabled={prefersReducedMotion} />
                       </span>
-                      <span className="font-mono text-sm sm:text-base text-[#6E6D68] normal-case">
+                      <span className="font-mono text-sm sm:text-base text-[#6E6D68] dark:text-[#9E9D96] normal-case">
                         µg/m³
                       </span>
                     </div>
-                    <div className="font-mono text-xs text-[#6E6D68] mt-2 flex items-center gap-2">
+                    <div className="font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] mt-2 flex items-center gap-2">
                       <span>{t('intervalLabel')}</span>
-                      <strong className="text-[#111111] font-mono">
+                      <strong className="text-[#111111] dark:text-[#F4F3EE] font-mono">
                         {fmt(currentDay.lower_80 ?? currentDay.lower)} – {fmt(currentDay.upper_80 ?? currentDay.upper)} <span className="normal-case">µg/m³</span>
                       </strong>
                     </div>
@@ -1389,31 +1462,31 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   <div className="my-4">
                     {isReplayAlert ? (
                       <div
-                        className={`border-2 border-[#E13C2A] px-3.5 py-2 inline-block ${
+                        className={`border-2 border-[#E13C2A] dark:border-[#FF4D36] px-3.5 py-2 inline-block ${
                           !prefersReducedMotion ? 'animate-alert-pulse' : ''
                         }`}
                       >
-                        <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E13C2A]">
-                          {t('alertStamp')}
+                        <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E13C2A] dark:text-[#FF4D36]">
+                              {t('alertStamp')}
                         </span>
                       </div>
                     ) : (
-                      <div className="border-2 border-[#15803D] px-3.5 py-2 inline-block">
-                        <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#15803D]">
+                      <div className="border-2 border-[#15803D] dark:border-[#22C55E] px-3.5 py-2 inline-block">
+                        <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-[#15803D] dark:text-[#22C55E]">
                           {t('noAlertStamp')}
                         </span>
                       </div>
                     )}
 
                     {currentDay.in_diwali_window && (
-                      <span className="ml-2 font-mono text-[11px] font-bold text-[#E13C2A] uppercase border border-[#E13C2A]/40 px-2 py-1 align-middle">
+                      <span className="ml-2 font-mono text-[11px] font-bold text-[#E13C2A] dark:text-[#FF4D36] uppercase border border-[#E13C2A]/40 dark:border-[#FF4D36]/40 px-2 py-1 align-middle">
                         {lang === 'hi' ? '★ दीवाली अवधि' : '★ DIWALI WINDOW'}
                       </span>
                     )}
                   </div>
 
                   {/* Concise 2-Sentence Briefing */}
-                  <p className="font-serif text-base sm:text-lg text-[#111111] leading-snug my-4">
+                  <p className="font-serif text-base sm:text-lg text-[#111111] dark:text-[#F4F3EE] leading-snug my-4">
                     {isReplayAlert
                       ? (lang === 'hi'
                           ? `कल के लिए अनुमानित ${fmt(currentDay.model)} µg/m³ सांद्रता ${
@@ -1432,28 +1505,28 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   </p>
 
                   {/* Clean Typographic 4-Row Directives Table */}
-                  <div className="border-t border-[#111111]/15 mt-6 font-mono text-xs">
-                    <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                      <span className="text-[#6E6D68] uppercase">{t('assemblyLabel')}</span>
-                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                  <div className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 mt-6 font-mono text-xs">
+                    <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                      <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('assemblyLabel')}</span>
+                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                         {isReplayAlert ? t('assemblyAlert') : t('assemblySafe')}
                       </span>
                     </div>
-                    <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                      <span className="text-[#6E6D68] uppercase">{t('sportsLabel')}</span>
-                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                    <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                      <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('sportsLabel')}</span>
+                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                         {isReplayAlert ? t('sportsAlert') : t('sportsSafe')}
                       </span>
                     </div>
-                    <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                      <span className="text-[#6E6D68] uppercase">{t('recessLabel')}</span>
-                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A]' : 'text-[#15803D]'}`}>
+                    <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                      <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('recessLabel')}</span>
+                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#15803D] dark:text-[#22C55E]'}`}>
                         {isReplayAlert ? t('recessAlert') : t('recessSafe')}
                       </span>
                     </div>
-                    <div className="py-2.5 border-b border-[#111111]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] transition-colors">
-                      <span className="text-[#6E6D68] uppercase">{t('infirmaryLabel')}</span>
-                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A]' : 'text-[#111111]'}`}>
+                    <div className="py-2.5 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 flex items-baseline justify-between hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                      <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">{t('infirmaryLabel')}</span>
+                      <span className={`font-bold ${isReplayAlert ? 'text-[#E13C2A] dark:text-[#FF4D36]' : 'text-[#111111] dark:text-[#F4F3EE]'}`}>
                         {isReplayAlert ? t('infirmaryAlert') : t('infirmarySafe')}
                       </span>
                     </div>
@@ -1461,17 +1534,17 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 </div>
 
                 {/* Attribution Line & Policy Selector */}
-                <div className="pt-6 font-mono text-[11px] text-[#6E6D68] flex flex-col gap-2">
+                <div className="pt-6 font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96] flex flex-col gap-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="uppercase font-bold text-[#111111]">{t('policyLabel')}</span>
+                    <span className="uppercase font-bold text-[#111111] dark:text-[#F4F3EE]">{t('policyLabel')}</span>
                     {/* Option 1: Calibrated Safety Buffer (Default) */}
                     <button
                       type="button"
                       onClick={() => setPolicy('calibrated')}
                       className={`px-2 py-0.5 border text-[10px] tracking-wide transition ${
                         policy === 'calibrated'
-                          ? 'bg-[#111111] text-[#F8F7F4] border-[#111111] font-bold'
-                          : 'bg-transparent text-[#6E6D68] border-[#111111]/20 hover:text-[#111111]'
+                          ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210] border-[#111111] dark:border-[#F4F3EE] font-bold'
+                          : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] border-[#111111]/20 dark:border-[#F4F3EE]/20 hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                       }`}
                       title="Calibrated Safety Buffer (+6 µg/m³): 97.5% Decision Accuracy, 96.9% Safety Recall, Only 2 False Alarms"
                     >
@@ -1483,8 +1556,8 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       onClick={() => setPolicy('balanced')}
                       className={`px-2 py-0.5 border text-[10px] tracking-wide transition ${
                         policy === 'balanced'
-                          ? 'bg-[#111111] text-[#F8F7F4] border-[#111111] font-bold'
-                          : 'bg-transparent text-[#6E6D68] border-[#111111]/20 hover:text-[#111111]'
+                          ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210] border-[#111111] dark:border-[#F4F3EE] font-bold'
+                          : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] border-[#111111]/20 dark:border-[#F4F3EE]/20 hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                       }`}
                       title="Balanced Point Rule (model > 60 µg/m³): 95.8% Decision Accuracy, 0 False Alarms"
                     >
@@ -1496,8 +1569,8 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       onClick={() => setPolicy('conservative')}
                       className={`px-2 py-0.5 border text-[10px] tracking-wide transition ${
                         policy === 'conservative'
-                          ? 'bg-[#111111] text-[#F8F7F4] border-[#111111] font-bold'
-                          : 'bg-transparent text-[#6E6D68] border-[#111111]/20 hover:text-[#111111]'
+                          ? 'bg-[#111111] text-[#F8F7F4] dark:bg-[#F4F3EE] dark:text-[#121210] border-[#111111] dark:border-[#F4F3EE] font-bold'
+                          : 'bg-transparent text-[#6E6D68] dark:text-[#9E9D96] border-[#111111]/20 dark:border-[#F4F3EE]/20 hover:text-[#111111] dark:hover:text-[#F4F3EE]'
                       }`}
                       title="Precautionary: Alert if 80% Upper Bound > 60 µg/m³"
                     >
@@ -1506,7 +1579,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   </div>
                   <div className="flex justify-between items-center text-[10px] pt-1">
                     <span>METEO: OPEN-METEO // OPENAQ</span>
-                    <span className="font-bold text-[#111111]">
+                    <span className="font-bold text-[#111111] dark:text-[#F4F3EE]">
                       {policy === 'calibrated'
                         ? '★ CALIBRATED POLICY ACTIVE'
                         : policy === 'balanced'
@@ -1524,12 +1597,12 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
               <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
                 <div>
                   {/* Trajectory Header & Series Controls */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-[#111111]/15">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15">
                     <div>
-                      <span className="font-mono text-xs tracking-wider text-[#6E6D68] block">
+                      <span className="font-mono text-xs tracking-wider text-[#6E6D68] dark:text-[#9E9D96] block">
                         <span className="uppercase">FIG. 1 // CHRONOLOGICAL CONCENTRATION CURVE</span> (<span className="normal-case">µg/m³</span>)
                       </span>
-                      <h2 className="font-serif text-lg text-[#111111] font-normal">
+                      <h2 className="font-serif text-lg text-[#111111] dark:text-[#F4F3EE] font-normal">
                         {lang === 'hi' ? '120-दिवसीय टेस्ट रीप्ले व अनिश्चितता दायरा' : 'Held-Out Test Replay Trajectory & Uncertainty Envelope'}
                       </h2>
                     </div>
@@ -1537,25 +1610,25 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                     <div className="flex items-center gap-3 font-mono text-[11px]">
                       <button
                         onClick={() => setShowModel(!showModel)}
-                        className={`hover:text-[#111111] ${showModel ? 'text-[#1D4ED8] font-bold underline' : 'text-[#6E6D68]'}`}
+                        className={`hover:text-[#111111] dark:hover:text-[#F4F3EE] ${showModel ? 'text-[#1D4ED8] dark:text-[#60A5FA] font-bold underline' : 'text-[#6E6D68] dark:text-[#9E9D96]'}`}
                       >
                         [Model]
                       </button>
                       <button
                         onClick={() => setShowActual(!showActual)}
-                        className={`hover:text-[#111111] ${showActual ? 'text-[#111111] font-bold underline' : 'text-[#6E6D68]'}`}
+                        className={`hover:text-[#111111] dark:hover:text-[#F4F3EE] ${showActual ? 'text-[#111111] dark:text-[#F4F3EE] font-bold underline' : 'text-[#6E6D68] dark:text-[#9E9D96]'}`}
                       >
                         [Actual]
                       </button>
                       <button
                         onClick={() => setShowBaseline(!showBaseline)}
-                        className={`hover:text-[#111111] ${showBaseline ? 'text-[#111111] font-bold underline' : 'text-[#6E6D68]'}`}
+                        className={`hover:text-[#111111] dark:hover:text-[#F4F3EE] ${showBaseline ? 'text-[#111111] dark:text-[#F4F3EE] font-bold underline' : 'text-[#6E6D68] dark:text-[#9E9D96]'}`}
                       >
                         [Baseline]
                       </button>
                       <button
                         onClick={() => setShowBand(!showBand)}
-                        className={`hover:text-[#111111] ${showBand ? 'text-[#111111] font-bold underline' : 'text-[#6E6D68]'}`}
+                        className={`hover:text-[#111111] dark:hover:text-[#F4F3EE] ${showBand ? 'text-[#111111] dark:text-[#F4F3EE] font-bold underline' : 'text-[#6E6D68] dark:text-[#9E9D96]'}`}
                       >
                         [80% Band]
                       </button>
@@ -1566,7 +1639,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   <div className="h-80 sm:h-[400px] w-full pt-4">
                     <ResponsiveContainer width="100%" height="100%">
                       <ComposedChart
-                        key={`${mode}-${selectedDate}`}
+                        key={`${mode}-${selectedDate}-${isDark ? 'dark' : 'light'}`}
                         data={chartData}
                         margin={{ top: 10, right: 10, left: -15, bottom: 0 }}
                         onClick={(e) => {
@@ -1577,10 +1650,10 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       >
                         <XAxis
                           dataKey="date"
-                          stroke="#111111"
+                          stroke={chartColors.axis}
                           strokeWidth={1}
-                          tickLine={{ stroke: '#111111' }}
-                          tick={{ fontSize: 10, fill: '#6E6D68', fontFamily: 'JetBrains Mono' }}
+                          tickLine={{ stroke: chartColors.axis }}
+                          tick={{ fontSize: 10, fill: chartColors.tick, fontFamily: 'JetBrains Mono' }}
                           tickFormatter={(val) => {
                             const parts = val.split('-');
                             return `${parts[1]}/${parts[2]}`;
@@ -1588,10 +1661,10 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                           minTickGap={28}
                         />
                         <YAxis
-                          stroke="#111111"
+                          stroke={chartColors.axis}
                           strokeWidth={1}
-                          tickLine={{ stroke: '#111111' }}
-                          tick={{ fontSize: 10, fill: '#6E6D68', fontFamily: 'JetBrains Mono' }}
+                          tickLine={{ stroke: chartColors.axis }}
+                          tick={{ fontSize: 10, fill: chartColors.tick, fontFamily: 'JetBrains Mono' }}
                           domain={[0, 'auto']}
                         />
 
@@ -1606,31 +1679,31 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                                 ? Boolean(d.alert_80 ?? d.alert)
                                 : Boolean(d.alert_calibrated ?? d.alert);
                               return (
-                                <div className="bg-[#F8F7F4] border border-[#111111] p-3 text-xs font-mono shadow-none max-w-[260px]">
-                                  <div className="border-b border-[#111111]/20 pb-1 font-bold text-[#111111] flex justify-between">
+                                <div className="bg-[#F8F7F4] dark:bg-[#181816] border border-[#111111] dark:border-[#F4F3EE] p-3 text-xs font-mono shadow-none max-w-[260px]">
+                                  <div className="border-b border-[#111111]/20 dark:border-[#F4F3EE]/20 pb-1 font-bold text-[#111111] dark:text-[#F4F3EE] flex justify-between">
                                     <span>{d.date}</span>
-                                    {d.in_diwali_window && <span className="text-[#E13C2A]">★ DIWALI</span>}
+                                    {d.in_diwali_window && <span className="text-[#E13C2A] dark:text-[#FF4D36]">★ DIWALI</span>}
                                   </div>
-                                  <div className="pt-1.5 space-y-1 text-[#111111]">
+                                  <div className="pt-1.5 space-y-1 text-[#111111] dark:text-[#F4F3EE]">
                                     <div className="flex justify-between">
-                                      <span className="text-[#6E6D68]">Actual:</span>
+                                      <span className="text-[#6E6D68] dark:text-[#9E9D96]">Actual:</span>
                                       <span className="font-bold">{fmt(d.actual)} <span className="normal-case">µg/m³</span></span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-[#6E6D68]">Model Forecast:</span>
-                                      <span className="font-bold text-[#1D4ED8]">{fmt(d.model)} <span className="normal-case">µg/m³</span></span>
+                                      <span className="text-[#6E6D68] dark:text-[#9E9D96]">Model Forecast:</span>
+                                      <span className="font-bold text-[#1D4ED8] dark:text-[#60A5FA]">{fmt(d.model)} <span className="normal-case">µg/m³</span></span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-[#6E6D68]">Baseline:</span>
+                                      <span className="text-[#6E6D68] dark:text-[#9E9D96]">Baseline:</span>
                                       <span>{fmt(d.baseline)} <span className="normal-case">µg/m³</span></span>
                                     </div>
-                                    <div className="flex justify-between text-[#6E6D68]">
+                                    <div className="flex justify-between text-[#6E6D68] dark:text-[#9E9D96]">
                                       <span>80% Range:</span>
                                       <span>{fmt(d.lower_80 ?? d.lower)}–{fmt(d.upper_80 ?? d.upper)} <span className="normal-case">µg/m³</span></span>
                                     </div>
-                                    <div className="pt-1 border-t border-[#111111]/20 flex justify-between text-[11px]">
+                                    <div className="pt-1 border-t border-[#111111]/20 dark:border-[#F4F3EE]/20 flex justify-between text-[11px]">
                                       <span>Verdict ({policy === 'balanced' ? 'Point' : policy === 'conservative' ? '80% Upper' : 'Calibrated'}):</span>
-                                      <span className={verdictAlert ? 'text-[#E13C2A] font-bold' : 'text-[#15803D] font-bold'}>
+                                      <span className={verdictAlert ? 'text-[#E13C2A] dark:text-[#FF4D36] font-bold' : 'text-[#15803D] dark:text-[#22C55E] font-bold'}>
                                         {verdictAlert ? (lang === 'hi' ? 'चेतावनी' : 'ALERT') : (lang === 'hi' ? 'सुरक्षित' : 'NO ALERT')}
                                       </span>
                                     </div>
@@ -1662,8 +1735,8 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                               dataKey="rangeDelta"
                               stackId="range"
                               stroke="transparent"
-                              fill="#111111"
-                              fillOpacity={0.07}
+                              fill={chartColors.band}
+                              fillOpacity={chartColors.bandOpacity}
                               isAnimationActive={!prefersReducedMotion}
                               animationDuration={800}
                               animationEasing="ease-out"
@@ -1677,26 +1750,26 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                             name="Actual"
                             type="monotone"
                             dataKey="actual"
-                            stroke="#111111"
+                            stroke={chartColors.actual}
                             strokeWidth={1.75}
-                            dot={{ r: 2, fill: '#111111', stroke: '#111111' }}
-                            activeDot={{ r: 5, fill: '#111111' }}
+                            dot={{ r: 2, fill: chartColors.actual, stroke: chartColors.actual }}
+                            activeDot={{ r: 5, fill: chartColors.actual }}
                             isAnimationActive={!prefersReducedMotion}
                             animationDuration={800}
                             animationEasing="ease-out"
                           />
                         )}
 
-                        {/* Model Prediction: BLUE #1D4ED8 */}
+                        {/* Model Prediction: BLUE #1D4ED8 / #60A5FA */}
                         {showModel && (
                           <Line
                             name="Model"
                             type="monotone"
                             dataKey="model"
-                            stroke="#1D4ED8"
+                            stroke={chartColors.model}
                             strokeWidth={2}
                             dot={false}
-                            activeDot={{ r: 5, fill: '#1D4ED8' }}
+                            activeDot={{ r: 5, fill: chartColors.model }}
                             isAnimationActive={!prefersReducedMotion}
                             animationDuration={800}
                             animationEasing="ease-out"
@@ -1709,7 +1782,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                             name="Baseline"
                             type="monotone"
                             dataKey="baseline"
-                            stroke="#6E6D68"
+                            stroke={chartColors.baseline}
                             strokeWidth={1}
                             strokeDasharray="3 3"
                             dot={false}
@@ -1722,12 +1795,12 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                         {/* NAAQS Limit 60 ug/m3 */}
                         <ReferenceLine
                           y={data.threshold}
-                          stroke="#E13C2A"
+                          stroke={chartColors.naaqs}
                           strokeDasharray="4 4"
                           strokeWidth={1.25}
                           label={{
                             value: `NAAQS LIMIT (${data.threshold} µg/m³)`,
-                            fill: '#E13C2A',
+                            fill: chartColors.naaqs,
                             fontSize: 9,
                             fontFamily: 'JetBrains Mono',
                             position: 'top',
@@ -1740,11 +1813,11 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                             <ReferenceLine
                               key={dw}
                               x={dw}
-                              stroke="#111111"
+                              stroke={chartColors.diwali}
                               strokeWidth={1}
                               label={{
                                 value: `DIWALI (${dw})`,
-                                fill: '#111111',
+                                fill: chartColors.diwali,
                                 fontSize: 9,
                                 fontFamily: 'JetBrains Mono',
                                 position: 'insideTopLeft',
@@ -1756,7 +1829,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                         {selectedDate && (
                           <ReferenceLine
                             x={selectedDate}
-                            stroke="#111111"
+                            stroke={chartColors.cursor}
                             strokeWidth={1.5}
                           />
                         )}
@@ -1766,11 +1839,11 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 </div>
 
                 {/* Chart Caption & Legend */}
-                <div className="pt-4 border-t border-[#111111]/15 flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#6E6D68] gap-2">
+                <div className="pt-4 border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#6E6D68] dark:text-[#9E9D96] gap-2">
                   <span>
                     SOURCE: OPENAQ AIR SENSORS &amp; OPEN-METEO ARCHIVES • INTERPOLATED DAILY (24H UTC MEAN)
                   </span>
-                  <span className="text-[#111111]">
+                  <span className="text-[#111111] dark:text-[#F4F3EE]">
                     {lang === 'hi' ? 'विशिष्ट तिथि देखने के लिए चार्ट पर क्लिक करें।' : 'Click chart point to inspect that date.'}
                   </span>
                 </div>
@@ -1780,55 +1853,55 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             {/* ==========================================
                 BOTTOM TICKER STRIP (REPLAY)
                 ========================================== */}
-            <div className="border-t border-[#111111]/15 grid grid-cols-2 md:grid-cols-4 font-mono divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 text-xs">
-              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerModel')}</span>
+            <div className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 grid grid-cols-2 md:grid-cols-4 font-mono divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 dark:divide-[#F4F3EE]/15 text-xs">
+              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerModel')}</span>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                  <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                     {fmt(currentDay.model)}
                   </span>
-                  <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                 </div>
-                <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                   {lang === 'hi' ? 'ग्रेडिएंट बूस्टिंग रिग्रेसर' : 'Gradient boosting regressor'}
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerInterval')}</span>
+              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerInterval')}</span>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                  <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                     {fmt(currentDay.lower_80 ?? currentDay.lower)} – {fmt(currentDay.upper_80 ?? currentDay.upper)}
                   </span>
-                  <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                 </div>
-                <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                   {t('tickerSpread')} {fmt((currentDay.upper_80 ?? currentDay.upper) - (currentDay.lower_80 ?? currentDay.lower))} <span className="normal-case">µg/m³</span>
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerBaseline')}</span>
+              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerBaseline')}</span>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                  <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                     {fmt(currentDay.baseline)}
                   </span>
-                  <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                 </div>
-                <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                   {lang === 'hi' ? 'बेंचमार्क (कल = आज)' : 'Naive "Tomorrow = Today"'}
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                <span className="text-[10px] text-[#6E6D68] uppercase block">{t('tickerError')}</span>
+              <div className="p-4 sm:p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('tickerError')}</span>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl sm:text-2xl font-bold text-[#111111] tabular-nums">
+                  <span className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                     |{fmt(Math.abs(currentDay.actual - currentDay.model))}|
                   </span>
-                  <span className="text-[11px] text-[#6E6D68] normal-case">µg/m³</span>
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                 </div>
-                <span className="text-[10px] text-[#6E6D68] mt-1 block">
+                <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] mt-1 block">
                   {t('tickerGroundTruth')} {fmt(currentDay.actual)} <span className="normal-case">µg/m³</span>
                 </span>
               </div>
@@ -1837,74 +1910,74 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             {/* ==========================================
                 TECHNICAL SECTION A: EVALUATION METRICS LEDGER (REPLAY ONLY)
                 ========================================== */}
-            <section className="border-t border-[#111111]/15 p-6 sm:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-3 border-b border-[#111111]/15 mb-6">
+            <section className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 mb-6">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68]">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('table1Title')}
                   </span>
-                  <h3 className="font-serif text-xl sm:text-2xl text-[#111111] mt-0.5">
+                  <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                     {t('table1Sub')}
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-[#6E6D68]">
+                <span className="font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                   {t('table1Caption')}
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 border border-[#111111]/15 font-mono text-xs">
-                <div className="p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                  <span className="text-[11px] text-[#6E6D68] block">
+              <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#111111]/15 dark:divide-[#F4F3EE]/15 border border-[#111111]/15 dark:border-[#F4F3EE]/15 font-mono text-xs">
+                <div className="p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] block">
                     <span className="uppercase">{t('cardAccuracyTitle')}</span>
                   </span>
-                  <div className="mt-2 text-3xl font-serif font-normal text-[#15803D] tabular-nums">
+                  <div className="mt-2 text-3xl font-serif font-normal text-[#15803D] dark:text-[#22C55E] tabular-nums">
                     {((data.metrics?.decision_accuracy || 0.975) * 100).toFixed(1)}%
                   </div>
-                  <div className="mt-1 text-xs text-[#6E6D68]">
+                  <div className="mt-1 text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('cardAccuracySub')} {((data.metrics?.decision_accuracy_pt || 0.958) * 100).toFixed(1)}%
                   </div>
-                  <p className="font-sans text-xs text-[#111111] mt-3 leading-relaxed">
+                  <p className="font-sans text-xs text-[#111111] dark:text-[#F4F3EE] mt-3 leading-relaxed">
                     {t('cardAccuracyDesc')}
                   </p>
                 </div>
 
-                <div className="p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                  <span className="text-[11px] text-[#6E6D68] uppercase block">{t('cardCoverageTitle')}</span>
-                  <div className="mt-2 text-3xl font-serif font-normal text-[#111111] tabular-nums">
+                <div className="p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('cardCoverageTitle')}</span>
+                  <div className="mt-2 text-3xl font-serif font-normal text-[#111111] dark:text-[#F4F3EE] tabular-nums">
                     {((data.metrics?.range_coverage_80 || 0.808) * 100).toFixed(1)}%
                   </div>
-                  <div className="mt-1 text-xs text-[#6E6D68]">
+                  <div className="mt-1 text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('cardCoverageSub')} 80.0%
                   </div>
-                  <p className="font-sans text-xs text-[#111111] mt-3 leading-relaxed">
+                  <p className="font-sans text-xs text-[#111111] dark:text-[#F4F3EE] mt-3 leading-relaxed">
                     {t('cardCoverageDesc')}
                   </p>
                 </div>
 
-                <div className="p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                  <span className="text-[11px] text-[#6E6D68] uppercase block">{t('cardMaeTitle')}</span>
-                  <div className="mt-2 text-3xl font-serif font-normal text-[#111111] tabular-nums">
-                    ±{fmt(data.metrics?.mae_model)} <span className="text-xs font-mono text-[#6E6D68] normal-case">µg/m³</span>
+                <div className="p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] uppercase block">{t('cardMaeTitle')}</span>
+                  <div className="mt-2 text-3xl font-serif font-normal text-[#111111] dark:text-[#F4F3EE] tabular-nums">
+                    ±{fmt(data.metrics?.mae_model)} <span className="text-xs font-mono text-[#6E6D68] dark:text-[#9E9D96] normal-case">µg/m³</span>
                   </div>
-                  <div className="mt-1 text-xs text-[#6E6D68]">
+                  <div className="mt-1 text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('cardMaeBaseline')} ±{fmt(data.metrics?.mae_baseline)} <span className="normal-case">µg/m³</span>
                   </div>
-                  <p className="font-sans text-xs text-[#111111] mt-3 leading-relaxed">
+                  <p className="font-sans text-xs text-[#111111] dark:text-[#F4F3EE] mt-3 leading-relaxed">
                     {t('cardMaeDesc')}
                   </p>
                 </div>
 
-                <div className="p-5 hover:bg-[#111111]/[0.02] transition-colors">
-                  <span className="text-[11px] text-[#6E6D68] block">
+                <div className="p-5 hover:bg-[#111111]/[0.02] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors">
+                  <span className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96] block">
                     <span className="uppercase">{t('cardRecallTitle')}</span>
                   </span>
-                  <div className="mt-2 text-3xl font-serif font-normal text-[#15803D] tabular-nums">
+                  <div className="mt-2 text-3xl font-serif font-normal text-[#15803D] dark:text-[#22C55E] tabular-nums">
                     {((data.metrics?.recall || 0.969) * 100).toFixed(1)}%
                   </div>
-                  <div className="mt-1 text-xs text-[#6E6D68]">
+                  <div className="mt-1 text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('cardRecallPrecision')} {((data.metrics?.precision || 0.939) * 100).toFixed(1)}% (FA: {data.metrics?.false_alarms ?? 2})
                   </div>
-                  <p className="font-sans text-xs text-[#111111] mt-3 leading-relaxed">
+                  <p className="font-sans text-xs text-[#111111] dark:text-[#F4F3EE] mt-3 leading-relaxed">
                     {t('cardRecallDesc')}
                   </p>
                 </div>
@@ -1914,88 +1987,88 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             {/* ==========================================
                 TECHNICAL SECTION B: THRESHOLD POLICY MATRIX (REPLAY ONLY)
                 ========================================== */}
-            <section className="border-t border-[#111111]/15 p-6 sm:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-3 border-b border-[#111111]/15 mb-6">
+            <section className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-3 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 mb-6">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68]">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('table2Title')}
                   </span>
-                  <h3 className="font-serif text-xl sm:text-2xl text-[#111111] mt-0.5">
+                  <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                     {t('table2Sub')}
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-[#6E6D68]">
+                <span className="font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                   {t('table2Caption')}
                 </span>
               </div>
 
-              <div className="overflow-x-auto border border-[#111111]/15">
+              <div className="overflow-x-auto border border-[#111111]/15 dark:border-[#F4F3EE]/15">
                 <table className="w-full text-left font-mono text-xs border-collapse">
                   <thead>
-                    <tr className="border-b border-[#111111]/15 bg-[#111111]/[0.02] text-[#6E6D68]">
-                      <th className="p-3 border-r border-[#111111]/15 font-bold text-[#111111]">{t('colThreshold')}</th>
-                      <th className="p-3 border-r border-[#111111]/15">{t('colDaysAbove')}</th>
+                    <tr className="border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 bg-[#111111]/[0.02] dark:bg-[#F4F3EE]/[0.03] text-[#6E6D68] dark:text-[#9E9D96]">
+                      <th className="p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 font-bold text-[#111111] dark:text-[#F4F3EE]">{t('colThreshold')}</th>
+                      <th className="p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15">{t('colDaysAbove')}</th>
                       <th
                         colSpan={3}
-                        className={`p-3 border-r border-[#111111]/15 text-center text-[#111111] font-bold ${
-                          policy === 'balanced' ? 'bg-[#111111]/10 underline underline-offset-4' : 'bg-[#111111]/[0.03]'
+                        className={`p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-center text-[#111111] dark:text-[#F4F3EE] font-bold ${
+                          policy === 'balanced' ? 'bg-[#111111]/10 dark:bg-[#F4F3EE]/15 underline underline-offset-4' : 'bg-[#111111]/[0.03] dark:bg-[#F4F3EE]/[0.05]'
                         }`}
                       >
                         {t('colPointRule')} {policy === 'balanced' ? '• [ACTIVE]' : ''}
                       </th>
                       <th
                         colSpan={3}
-                        className={`p-3 border-r border-[#111111]/15 text-center text-[#111111] font-bold ${
-                          policy === 'conservative' ? 'bg-[#111111]/10 underline underline-offset-4' : 'bg-[#111111]/[0.05]'
+                        className={`p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-center text-[#111111] dark:text-[#F4F3EE] font-bold ${
+                          policy === 'conservative' ? 'bg-[#111111]/10 dark:bg-[#F4F3EE]/15 underline underline-offset-4' : 'bg-[#111111]/[0.05] dark:bg-[#F4F3EE]/[0.07]'
                         }`}
                       >
                         {t('colConservative')} {policy === 'conservative' ? '• [ACTIVE]' : ''}
                       </th>
                       <th
                         colSpan={3}
-                        className={`p-3 text-center text-[#111111] font-bold ${
-                          policy === 'calibrated' ? 'bg-[#111111]/10 underline underline-offset-4' : 'bg-[#111111]/[0.03]'
+                        className={`p-3 text-center text-[#111111] dark:text-[#F4F3EE] font-bold ${
+                          policy === 'calibrated' ? 'bg-[#111111]/10 dark:bg-[#F4F3EE]/15 underline underline-offset-4' : 'bg-[#111111]/[0.03] dark:bg-[#F4F3EE]/[0.05]'
                         }`}
                       >
                         {t('colRiskRule')} {policy === 'calibrated' ? '• [ACTIVE]' : ''}
                       </th>
                     </tr>
-                    <tr className="border-b border-[#111111]/15 text-[10px] text-[#6E6D68]">
-                      <th className="p-2 border-r border-[#111111]/15 normal-case">µg/m³</th>
-                      <th className="p-2 border-r border-[#111111]/15">{t('thGroundTruth')}</th>
-                      <th className="p-2 text-center text-[#111111]">{t('thHit')}</th>
-                      <th className="p-2 text-center text-[#E13C2A]">{t('thMiss')}</th>
-                      <th className="p-2 border-r border-[#111111]/15 text-center">{t('thFA')}</th>
-                      <th className="p-2 text-center text-[#111111]">{t('thHit')}</th>
-                      <th className="p-2 text-center text-[#E13C2A] font-bold">{t('thMiss')}</th>
-                      <th className="p-2 border-r border-[#111111]/15 text-center">{t('thFA')}</th>
-                      <th className="p-2 text-center text-[#111111]">{t('thHit')}</th>
-                      <th className="p-2 text-center text-[#E13C2A]">{t('thMiss')}</th>
+                    <tr className="border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 text-[10px] text-[#6E6D68] dark:text-[#9E9D96]">
+                      <th className="p-2 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 normal-case">µg/m³</th>
+                      <th className="p-2 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15">{t('thGroundTruth')}</th>
+                      <th className="p-2 text-center text-[#111111] dark:text-[#F4F3EE]">{t('thHit')}</th>
+                      <th className="p-2 text-center text-[#E13C2A] dark:text-[#FF4D36]">{t('thMiss')}</th>
+                      <th className="p-2 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-center">{t('thFA')}</th>
+                      <th className="p-2 text-center text-[#111111] dark:text-[#F4F3EE]">{t('thHit')}</th>
+                      <th className="p-2 text-center text-[#E13C2A] dark:text-[#FF4D36] font-bold">{t('thMiss')}</th>
+                      <th className="p-2 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-center">{t('thFA')}</th>
+                      <th className="p-2 text-center text-[#111111] dark:text-[#F4F3EE]">{t('thHit')}</th>
+                      <th className="p-2 text-center text-[#E13C2A] dark:text-[#FF4D36]">{t('thMiss')}</th>
                       <th className="p-2 text-center">{t('thFA')}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#111111]/15">
+                  <tbody className="divide-y divide-[#111111]/15 dark:divide-[#F4F3EE]/15">
                     {data.threshold_table &&
                       data.threshold_table.map((r) => {
                         const isActive = r.threshold === data.threshold;
                         return (
                           <tr
                             key={r.threshold}
-                            className={`hover:bg-[#111111]/[0.025] transition-colors ${isActive ? 'bg-[#111111]/[0.04] font-bold' : ''}`}
+                            className={`hover:bg-[#111111]/[0.025] dark:hover:bg-[#F4F3EE]/[0.04] transition-colors ${isActive ? 'bg-[#111111]/[0.04] dark:bg-[#F4F3EE]/[0.06] font-bold' : ''}`}
                           >
-                            <td className="p-3 border-r border-[#111111]/15 font-bold">
+                            <td className="p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 font-bold">
                               {r.threshold} <span className="normal-case">µg/m³</span> {isActive ? '• [ACTIVE]' : ''}
                             </td>
-                            <td className="p-3 border-r border-[#111111]/15 tabular-nums">{r.days_above}</td>
-                            <td className="p-3 text-center tabular-nums text-[#111111]">{r.pt_hit}</td>
-                            <td className="p-3 text-center tabular-nums text-[#E13C2A] font-bold">{r.pt_miss}</td>
-                            <td className="p-3 text-center tabular-nums border-r border-[#111111]/15 text-[#6E6D68]">{r.pt_fa}</td>
-                            <td className="p-3 text-center tabular-nums text-[#111111] font-bold">{r.ct_hit}</td>
-                            <td className="p-3 text-center tabular-nums text-[#E13C2A] font-extrabold">{r.ct_miss}</td>
-                            <td className="p-3 text-center tabular-nums border-r border-[#111111]/15 text-[#6E6D68]">{r.ct_fa}</td>
-                            <td className="p-3 text-center tabular-nums text-[#111111]">{r.pr_hit}</td>
-                            <td className="p-3 text-center tabular-nums text-[#E13C2A]">{r.pr_miss}</td>
-                            <td className="p-3 text-center tabular-nums text-[#6E6D68]">{r.pr_fa}</td>
+                            <td className="p-3 border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 tabular-nums">{r.days_above}</td>
+                            <td className="p-3 text-center tabular-nums text-[#111111] dark:text-[#F4F3EE]">{r.pt_hit}</td>
+                            <td className="p-3 text-center tabular-nums text-[#E13C2A] dark:text-[#FF4D36] font-bold">{r.pt_miss}</td>
+                            <td className="p-3 text-center tabular-nums border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-[#6E6D68] dark:text-[#9E9D96]">{r.pt_fa}</td>
+                            <td className="p-3 text-center tabular-nums text-[#111111] dark:text-[#F4F3EE] font-bold">{r.ct_hit}</td>
+                            <td className="p-3 text-center tabular-nums text-[#E13C2A] dark:text-[#FF4D36] font-extrabold">{r.ct_miss}</td>
+                            <td className="p-3 text-center tabular-nums border-r border-[#111111]/15 dark:border-[#F4F3EE]/15 text-[#6E6D68] dark:text-[#9E9D96]">{r.ct_fa}</td>
+                            <td className="p-3 text-center tabular-nums text-[#111111] dark:text-[#F4F3EE]">{r.pr_hit}</td>
+                            <td className="p-3 text-center tabular-nums text-[#E13C2A] dark:text-[#FF4D36]">{r.pr_miss}</td>
+                            <td className="p-3 text-center tabular-nums text-[#6E6D68] dark:text-[#9E9D96]">{r.pr_fa}</td>
                           </tr>
                         );
                       })}
@@ -2003,12 +2076,12 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 </table>
               </div>
 
-              <div className="mt-3 font-mono text-[11px] text-[#6E6D68] grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="mt-3 font-mono text-[11px] text-[#6E6D68] dark:text-[#9E9D96] grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <div>
                   <strong>{t('legendHit')}</strong>
                 </div>
                 <div>
-                  <strong className="text-[#E13C2A]">{t('legendMiss')}</strong>
+                  <strong className="text-[#E13C2A] dark:text-[#FF4D36]">{t('legendMiss')}</strong>
                 </div>
                 <div>
                   <strong>{t('legendFA')}</strong>
@@ -2019,34 +2092,34 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
             {/* ==========================================
                 TECHNICAL SECTION C: WHERE IT FAILS & REPLAY NOTICE (REPLAY ONLY)
                 ========================================== */}
-            <section className="border-t border-[#111111]/15 grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#111111]/15">
+            <section className="border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#111111]/15 dark:divide-[#F4F3EE]/15">
               <div className="lg:col-span-6 p-6 sm:p-8">
-                <div className="flex items-baseline justify-between pb-2 border-b border-[#111111]/15 mb-4">
+                <div className="flex items-baseline justify-between pb-2 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 mb-4">
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68]">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96]">
                       {t('sec3Title')}
                     </span>
-                    <h4 className="font-serif text-xl text-[#111111] mt-0.5">
+                    <h4 className="font-serif text-xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                       {t('sec3Sub')}
                     </h4>
                   </div>
                   <div className="flex items-center gap-2 font-mono text-xs">
                     <button
                       onClick={copyNotes}
-                      className="hover:text-[#E13C2A] underline underline-offset-2"
+                      className="hover:text-[#E13C2A] dark:hover:text-[#FF4D36] underline underline-offset-2"
                     >
                       {notesCopied ? t('sec3Copied') : t('sec3Copy')}
                     </button>
                     <button
                       onClick={() => setFailureNotes(DEFAULT_FAILURE_NOTES[lang] || DEFAULT_FAILURE_NOTES.en)}
-                      className="hover:text-[#111111] text-[#6E6D68]"
+                      className="hover:text-[#111111] dark:hover:text-[#F4F3EE] text-[#6E6D68] dark:text-[#9E9D96]"
                     >
                       {t('sec3Reset')}
                     </button>
                   </div>
                 </div>
 
-                <p className="font-sans text-xs text-[#6E6D68] mb-3 leading-relaxed">
+                <p className="font-sans text-xs text-[#6E6D68] dark:text-[#9E9D96] mb-3 leading-relaxed">
                   {t('sec3Desc')}
                 </p>
 
@@ -2054,17 +2127,17 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   value={failureNotes}
                   onChange={(e) => setFailureNotes(e.target.value)}
                   rows={7}
-                  className="w-full font-mono text-xs p-3 bg-transparent border border-[#111111]/20 text-[#111111] focus:outline-none focus:border-[#111111] leading-relaxed resize-none"
+                  className="w-full font-mono text-xs p-3 bg-transparent border border-[#111111]/20 dark:border-[#F4F3EE]/20 text-[#111111] dark:text-[#F4F3EE] focus:outline-none focus:border-[#111111] dark:focus:border-[#F4F3EE] leading-relaxed resize-none"
                 />
               </div>
 
               <div className="lg:col-span-6 p-6 sm:p-8">
-                <div className="flex items-baseline justify-between pb-2 border-b border-[#111111]/15 mb-4">
+                <div className="flex items-baseline justify-between pb-2 border-b border-[#111111]/15 dark:border-[#F4F3EE]/15 mb-4">
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68]">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#6E6D68] dark:text-[#9E9D96]">
                       {t('sec4Title')}
                     </span>
-                    <h4 className="font-serif text-xl text-[#111111] mt-0.5">
+                    <h4 className="font-serif text-xl text-[#111111] dark:text-[#F4F3EE] mt-0.5">
                       {t('sec4Sub')}
                     </h4>
                   </div>
@@ -2072,7 +2145,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                     <button
                       type="button"
                       onClick={() => setShowKeyInput(!showKeyInput)}
-                      className="text-[#6E6D68] hover:text-[#111111] underline"
+                      className="text-[#6E6D68] dark:text-[#9E9D96] hover:text-[#111111] dark:hover:text-[#F4F3EE] underline"
                     >
                       {showKeyInput ? t('sec4HideKey') : t('sec4ApiKey')}
                     </button>
@@ -2080,7 +2153,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       type="button"
                       onClick={generateAdvisory}
                       disabled={advisoryLoading}
-                      className="text-[#E13C2A] font-bold hover:underline"
+                      className="text-[#E13C2A] dark:text-[#FF4D36] font-bold hover:underline"
                     >
                       {advisoryLoading ? t('sec4Generating') : t('sec4GenerateBtn')}
                     </button>
@@ -2088,16 +2161,16 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 </div>
 
                 {showKeyInput && (
-                  <div className="mb-3 p-3 border border-[#111111]/20 font-mono text-xs space-y-1">
-                    <label className="text-[#6E6D68] block uppercase text-[10px]">Optional Google Gemini Key:</label>
+                  <div className="mb-3 p-3 border border-[#111111]/20 dark:border-[#F4F3EE]/20 font-mono text-xs space-y-1">
+                    <label className="text-[#6E6D68] dark:text-[#9E9D96] block uppercase text-[10px]">Optional Google Gemini Key:</label>
                     <input
                       type="password"
                       placeholder="AIzaSy..."
                       value={apiKey}
                       onChange={(e) => setApiKey(e.target.value)}
-                      className="w-full bg-transparent border-b border-[#111111]/40 py-1 font-mono text-xs focus:outline-none"
+                      className="w-full bg-transparent border-b border-[#111111]/40 dark:border-[#F4F3EE]/40 py-1 font-mono text-xs focus:outline-none"
                     />
-                    <span className="text-[10px] text-[#6E6D68] block">
+                    <span className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] block">
                       {lang === 'hi'
                         ? 'कुंजी न देने पर स्थानीय सत्यापित टेम्पलेट का प्रयोग किया जाएगा (शून्य नेटवर्क निर्भरता)।'
                         : 'If omitted, uses the deterministic verified template with zero network dependence.'}
@@ -2106,28 +2179,28 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                 )}
 
                 {advisory ? (
-                  <div className="border border-[#111111] p-4 font-mono text-xs space-y-2">
-                    <div className="flex items-baseline justify-between border-b border-[#111111]/20 pb-1.5 text-[10px] text-[#6E6D68]">
+                  <div className="border border-[#111111] dark:border-[#F4F3EE] p-4 font-mono text-xs space-y-2">
+                    <div className="flex items-baseline justify-between border-b border-[#111111]/20 dark:border-[#F4F3EE]/20 pb-1.5 text-[10px] text-[#6E6D68] dark:text-[#9E9D96]">
                       <span>REPLAY SAMPLE // {selectedDate}</span>
                       <div className="flex items-center gap-2">
                         <span>{advisorySource}</span>
                         <button
                           onClick={copyAdvisory}
-                          className="text-[#111111] hover:text-[#E13C2A] font-bold"
+                          className="text-[#111111] dark:text-[#F4F3EE] hover:text-[#E13C2A] dark:hover:text-[#FF4D36] font-bold"
                         >
                           {advisoryCopied ? t('sec4CopiedBtn') : t('sec4CopyBtn')}
                         </button>
                       </div>
                     </div>
-                    <p className="font-serif text-base text-[#111111] leading-relaxed pt-1">
+                    <p className="font-serif text-base text-[#111111] dark:text-[#F4F3EE] leading-relaxed pt-1">
                       "{advisory}"
                     </p>
-                    <div className="text-[10px] text-[#6E6D68] pt-1">
+                    <div className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] pt-1">
                       {t('sec4Footer')}
                     </div>
                   </div>
                 ) : (
-                  <div className="border border-dashed border-[#111111]/25 p-6 text-center font-mono text-xs text-[#6E6D68]">
+                  <div className="border border-dashed border-[#111111]/25 dark:border-[#F4F3EE]/25 p-6 text-center font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96]">
                     {t('sec4Placeholder')}
                   </div>
                 )}
@@ -2139,24 +2212,24 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
         {/* ==========================================
             REQUIRED LABELLING FOOTER (Editorial Colophon)
             ========================================== */}
-        <footer className="max-w-[1440px] mx-auto w-full px-6 sm:px-8 py-8 font-mono text-xs text-[#6E6D68] space-y-2">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-t border-[#111111]/15 pt-4 gap-2">
-            <p className="text-[#111111] font-bold uppercase">
+        <footer className="max-w-[1440px] mx-auto w-full px-6 sm:px-8 py-8 font-mono text-xs text-[#6E6D68] dark:text-[#9E9D96] space-y-2 transition-colors duration-150">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-t border-[#111111]/15 dark:border-[#F4F3EE]/15 pt-4 gap-2">
+            <p className="text-[#111111] dark:text-[#F4F3EE] font-bold uppercase">
               {t('footerDisclaimer')}
             </p>
-            <p className="text-[11px] text-[#6E6D68]">
+            <p className="text-[11px] text-[#6E6D68] dark:text-[#9E9D96]">
               {t('footerColophon')}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] pt-2 border-t border-[#111111]/10 gap-2 font-mono">
-            <span className="text-[#111111] font-bold uppercase">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] pt-2 border-t border-[#111111]/10 dark:border-[#F4F3EE]/10 gap-2 font-mono">
+            <span className="text-[#111111] dark:text-[#F4F3EE] font-bold uppercase">
               CO-DEVELOPERS: SWASTIK DIVYANSHU • KRISHNENDU PATRO
             </span>
-            <span className="text-[#6E6D68] uppercase">
+            <span className="text-[#6E6D68] dark:text-[#9E9D96] uppercase">
               DAV PUBLIC SCHOOL, CHANDRASEKHARPUR, BHUBANESWAR
             </span>
           </div>
-          <p className="text-[10px] text-[#6E6D68] leading-normal pt-1">
+          <p className="text-[10px] text-[#6E6D68] dark:text-[#9E9D96] leading-normal pt-1">
             {t('footerDetails')}
           </p>
         </footer>
