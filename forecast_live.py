@@ -345,7 +345,8 @@ def main():
         "threshold": DEFAULT_THRESHOLD,
         "in_diwali_window": in_diwali,
         "data_source": data_source,
-        "model_trained_through": model_trained_through
+        "model_trained_through": model_trained_through,
+        "model_status": "active"
     }
 
     write_latest_json(args.output, payload)

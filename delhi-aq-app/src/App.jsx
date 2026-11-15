@@ -641,7 +641,7 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                       <div className="flex justify-between items-baseline">
                         <span className="text-[#6E6D68] uppercase">{t('trainingHorizon')}</span>
                         <span className="text-[#111111]">
-                          {lang === 'hi' ? `मॉडल प्रशिक्षण: ${liveData.model_trained_through} तक` : `Frozen model trained through ${liveData.model_trained_through}`}
+                          {lang === 'hi' ? `उत्पादन मॉडल: ${liveData.model_trained_through} तक प्रशिक्षित` : `Production model trained through ${liveData.model_trained_through}`}
                         </span>
                       </div>
                     </div>
@@ -736,13 +736,14 @@ Instruct the coordinator whether 7:30 AM outdoor assembly and sports can go ahea
                   <span className="text-[10px] text-[#6E6D68] uppercase block">
                     {lang === 'hi' ? '04 // मॉडल स्थिति' : '04 // MODEL STATUS'}
                   </span>
-                  <div className="mt-1 flex items-baseline gap-1">
-                    <span className="text-base sm:text-lg font-bold text-[#111111]">
-                      FROZEN
+                  <div className="mt-1 flex items-baseline gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#15803D] inline-block mb-0.5 animate-pulse"></span>
+                    <span className="text-base sm:text-lg font-bold text-[#15803D] tracking-wide">
+                      {lang === 'hi' ? 'सक्रिय' : 'ACTIVE'}
                     </span>
                   </div>
                   <span className="text-[10px] text-[#6E6D68] mt-1 block">
-                    {lang === 'hi' ? `प्रशिक्षण: ${liveData.model_trained_through} तक` : `Trained through ${liveData.model_trained_through}`}
+                    {lang === 'hi' ? `उत्पादन मॉडल • ${liveData.model_trained_through} तक प्रशिक्षित` : `Production • Trained through ${liveData.model_trained_through}`}
                   </span>
                 </div>
               </div>
