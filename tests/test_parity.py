@@ -55,8 +55,8 @@ def test_offline_parity_with_results_json():
     assert pytest.approx(live["baseline"], abs=0.1) == ref_baseline
     assert pytest.approx(live["lower"], abs=0.1) == ref_lower
     assert pytest.approx(live["upper"], abs=0.1) == ref_upper
-    assert pytest.approx(live["lower_90"], abs=0.1) == ref_lower
-    assert pytest.approx(live["upper_90"], abs=0.1) == ref_upper
+    assert pytest.approx(live["lower_80"], abs=0.1) == ref_lower
+    assert pytest.approx(live["upper_80"], abs=0.1) == ref_upper
     assert live["alert"] == ref_alert
 
     # Specific check for 306.8 on 2026-11-12

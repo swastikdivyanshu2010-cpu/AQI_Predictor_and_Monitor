@@ -32,46 +32,19 @@ gbm.fit(train[features], train["target"])
 test_preds = gbm.predict(test[features])
 train_preds = gbm.predict(train[features])
 
-# Residuals for 80% and 90% prediction intervals (season-aware monthly conditioning)
+# Residuals for 80% prediction interval
 resids = np.abs(train["target"].values - train_preds)
 q80 = float(np.quantile(resids, 0.80))
-q90 = float(np.quantile(resids, 0.90))
 
-# Compute monthly quantiles from training history
-monthly_q80 = {}
-monthly_q90 = {}
-train_months = train.index.month
-for m in range(1, 13):
-    m_mask = train_months == m
-    if np.sum(m_mask) > 0:
-        monthly_q80[m] = float(np.round(np.quantile(resids[m_mask], 0.80), 2))
-        monthly_q90[m] = float(np.round(np.quantile(resids[m_mask], 0.90), 2))
-    else:
-        monthly_q80[m] = q80
-        monthly_q90[m] = q90
+# Single 80% confidence interval from training residuals
+lower_80 = np.maximum(test_preds - q80, 0.0)
+upper_80 = test_preds + q80
+lower = lower_80
+upper = upper_80
 
-# Target dates and months for test predictions
-test_target_months = (test.index + pd.Timedelta(days=1)).month
-q90_series = np.array([monthly_q90[m] for m in test_target_months])
-q80_series = np.array([monthly_q80[m] for m in test_target_months])
-
-lower_80 = np.maximum(test_preds - q80_series, 0.0)
-upper_80 = test_preds + q80_series
-
-lower_90 = np.maximum(test_preds - q90_series, 0.0)
-upper_90 = test_preds + q90_series
-
-# Primary interval is 90%; keep q80 as secondary
-lower = lower_90
-upper = upper_90
-mid_risk = test_preds + 0.5 * q80
-
-# Range coverage
-in_range_80 = (actual >= lower_80) & (actual <= upper_80)
+# 80% Range coverage
+in_range_80 = (actual >= lower) & (actual <= upper)
 range_coverage_80 = float(np.round(np.mean(in_range_80), 3))
-
-in_range_90 = (actual >= lower_90) & (actual <= upper_90)
-range_coverage_90 = float(np.round(np.mean(in_range_90), 3))
 
 # Final window MAE
 mae_model = float(np.round(mean_absolute_error(actual, test_preds), 2))
@@ -115,7 +88,6 @@ adjusted_preds = test_preds + rain_rebound
 SAFETY_BUFFER = 6.0
 alert_calibrated = (adjusted_preds + SAFETY_BUFFER) > THRESHOLD
 alert_pt = test_preds > THRESHOLD
-alert_90 = upper_90 > THRESHOLD
 alert_80 = upper_80 > THRESHOLD
 alert_pr = alert_calibrated
 alert_primary = alert_calibrated
@@ -180,17 +152,14 @@ for i, (issued_idx, row) in enumerate(test.iterrows()):
         "date": target_dt.strftime("%Y-%m-%d"),
         "actual": float(np.round(actual[i], 1)),
         "model": float(np.round(test_preds[i], 1)),
-        "lower": float(np.round(lower_90[i], 1)),
-        "upper": float(np.round(upper_90[i], 1)),
-        "lower_90": float(np.round(lower_90[i], 1)),
-        "upper_90": float(np.round(upper_90[i], 1)),
-        "lower_80": float(np.round(lower_80[i], 1)),
-        "upper_80": float(np.round(upper_80[i], 1)),
+        "lower": float(np.round(lower[i], 1)),
+        "upper": float(np.round(upper[i], 1)),
+        "lower_80": float(np.round(lower[i], 1)),
+        "upper_80": float(np.round(upper[i], 1)),
         "baseline": float(np.round(today[i], 1)),
         "alert": bool(alert_primary[i]),
         "alert_calibrated": bool(alert_calibrated[i]),
-        "alert_90": bool(upper_90[i] > THRESHOLD),
-        "alert_80": bool(upper_80[i] > THRESHOLD),
+        "alert_80": bool(upper[i] > THRESHOLD),
         "alert_point_forecast": bool(test_preds[i] > THRESHOLD),
         "in_diwali_window": in_diwali,
         "in_season": in_season
@@ -209,7 +178,6 @@ results = {
         "backtest_mae_model": backtest_mae_model,
         "backtest_mae_baseline": backtest_mae_baseline,
         "range_coverage_80": range_coverage_80,
-        "range_coverage_90": range_coverage_90,
         "decision_accuracy": decision_accuracy,
         "precision": precision,
         "recall": recall,

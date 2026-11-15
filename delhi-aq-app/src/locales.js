@@ -29,7 +29,7 @@ export const translations = {
     // Hero Section
     projectedNextDay: 'PROJECTED NEXT-DAY MEAN PM2.5 CONCENTRATION',
     projectedMean: 'PROJECTED MEAN PM2.5 CONCENTRATION',
-    intervalLabel: '90% PREDICTION INTERVAL:',
+    intervalLabel: '80% PREDICTION INTERVAL:',
     alertStamp: 'RESTRICT OUTDOOR ACTIVITY // ALERT',
     noAlertStamp: 'NORMAL OUTDOOR ACTIVITY // NO ALERT',
 
@@ -52,7 +52,7 @@ export const translations = {
     policyLabel: 'POLICY:',
     policyCalibrated: 'Calibrated Buffer (+6 µg/m³ • 2 False Alarms)',
     policyBalanced: 'Balanced Point (model > 60)',
-    policyConservative: 'Seasonal Precautionary (90% Upper > 60 • 9 False Alarms)',
+    policyConservative: 'Precautionary (80% Upper > 60)',
 
     // Stepper & Jumps
     jumpLabel: 'JUMP:',
@@ -62,7 +62,7 @@ export const translations = {
 
     // Bottom Ticker Strip
     tickerModel: '01 // MODEL PROJECTION',
-    tickerInterval: '02 // 90% CONFIDENCE INTERVAL',
+    tickerInterval: '02 // 80% CONFIDENCE INTERVAL',
     tickerBaseline: '03 // PERSISTENCE BENCHMARK',
     tickerError: '04 // HELD-OUT ACTUAL ERROR',
     tickerSpread: 'Spread:',
@@ -78,8 +78,8 @@ export const translations = {
     cardAccuracyTitle: 'DECISION ACCURACY (@ 60 µg/m³)',
     cardAccuracySub: 'Point Rule Accuracy:',
     cardAccuracyDesc: 'Overall correct alert / safe day decisions under calibrated buffer policy. Slashes false alarms down to only 2 days (vs 9 in seasonal upper).',
-    cardCoverageTitle: '90% PREDICTION INTERVAL COVERAGE',
-    cardCoverageSub: '80% Nominal Coverage:',
+    cardCoverageTitle: '80% PREDICTION INTERVAL COVERAGE',
+    cardCoverageSub: 'Nominal 80% Target:',
     cardCoverageDesc: 'Actual readings inside predicted [lower, upper] bounds across seasonal dispersion and calm atmospheric windows.',
     cardMaeTitle: 'TEST WINDOW ERROR (MAE)',
     cardMaeBaseline: 'Baseline:',
@@ -95,7 +95,7 @@ export const translations = {
     colThreshold: 'THRESHOLD',
     colDaysAbove: 'DAYS ABOVE',
     colPointRule: 'POINT RULE (pt: model > t)',
-    colConservative: 'CONSERVATIVE (ct: upper_90 > t)',
+    colConservative: 'CONSERVATIVE (ct: upper_80 > t)',
     colRiskRule: 'RISK-CALIBRATED RULE (pr)',
     thGroundTruth: 'Ground Truth',
     thHit: 'Hit',
@@ -128,7 +128,34 @@ export const translations = {
     // Footer
     footerDisclaimer: 'Prototype only. Not medical advice. PM2.5 data from OpenAQ; weather from Open-Meteo.',
     footerColophon: 'DELHI AIR QUALITY NEXT-DAY FORECAST • SWISS EDITORIAL SPECIFICATION',
-    footerDetails: 'Designed for school coordinators deciding morning physical education and outdoor assembly safety. Replay mode evaluates the 120-day held-out test window. Live mode ingests OpenAQ and Open-Meteo feeds every 6 hours via GitHub Actions. Algorithm: HistGradientBoostingRegressor with calibrated 90% prediction intervals.',
+    footerDetails: 'Designed for school coordinators deciding morning physical education and outdoor assembly safety. Replay mode evaluates the 120-day held-out test window. Live mode ingests OpenAQ and Open-Meteo feeds every 6 hours via GitHub Actions. Algorithm: HistGradientBoostingRegressor with calibrated 80% prediction intervals.',
+
+    // AirShield 1.0 Landing Page
+    landingTag: 'AIRSHIELD 1.0 // PEDIATRIC AIR QUALITY PROTECTION ENGINE',
+    landingHeadline: 'Empirical 24-Hour Advance PM2.5 Forecasting Engineered for School Child Protection in Delhi.',
+    landingSubheadline: 'An operational decision intelligence system that provides school directors with reliable 24-hour advance directives before hazardous morning air exposes pupils during assemblies and physical education.',
+    landingAuthors: 'Swastik Divyanshu & Krishnendu Patro',
+    landingSchool: 'DAV Chandrasekharpur Bhubaneswar',
+    landingSchoolFull: 'DAV Public School, Chandrasekharpur, Bhubaneswar, Odisha',
+    landingCtaLive: 'LAUNCH LIVE FORECAST →',
+    landingCtaLiveSub: 'Active 24-hour advance forecast updated 4× daily via GitHub Actions.',
+    landingCtaReplay: 'EXPLORE 120-DAY TEST REPLAY →',
+    landingCtaReplaySub: 'Complete held-out test evaluation with interactive single 80% confidence band.',
+    landingSec1Title: '01 // THE MORNING EXPOSURE HAZARD',
+    landingSec1Sub: 'The 07:30 AM Pediatric Inversion Vulnerability',
+    landingSec1Text: 'During Delhi\'s winter months, nocturnal thermal inversions trap ground-level emissions under a shallow boundary layer, causing PM2.5 concentrations to peak violently between 07:00 and 09:30 AM. This coincides exactly with school morning assemblies and outdoor athletic training. "Morning-of" sensor checks occur far too late to reroute school buses or reassign halls. AirShield provides the vital 24-hour lead time needed for proactive administrative action.',
+    landingSec2Title: '02 // THE MACHINE LEARNING ENGINE',
+    landingSec2Sub: 'Station Sensors + Meteorological Telemetry',
+    landingSec2Text: 'AirShield combines regulatory ground-level sensor feeds from OpenAQ with high-resolution meteorology from Open-Meteo (wind speed, wind direction vector components, boundary layer depth, relative humidity, surface temperature range, and precipitation sum). A non-linear HistGradientBoostingRegressor captures complex thermal stagnation and post-rain rebound patterns that persistence models miss.',
+    landingSec3Title: '03 // ASYMMETRIC RISK CALIBRATION',
+    landingSec3Sub: 'Prioritizing Pediatric Safety Over Symmetric Loss',
+    landingSec3Text: 'Standard machine learning models optimize symmetric loss (like MSE), treating false alarms and missed hazard days identically. In child health protection, a Miss (False Negative) exposes thousands of asthmatic children to hazardous air. AirShield applies a +6 µg/m³ Calibrated Safety Margin: achieving 97.5% Decision Accuracy and 96.9% Safety Recall across 120 held-out test days, while limiting false alarms to just 2 days.',
+    landingSec4Title: '04 // HONEST 80% UNCERTAINTY BAND',
+    landingSec4Sub: 'Calibrated Residual Bounds (±20.7 µg/m³)',
+    landingSec4Text: 'Single point forecasts give a dangerous illusion of absolute certainty. AirShield computes an empirical 80% confidence interval (±20.7 µg/m³ derived from training residuals), achieving 80.8% empirical test coverage across seasonal dispersion and calm atmospheric windows.',
+    landingSec5Title: '05 // AUTOMATED CONTINUOUS PIPELINE',
+    landingSec5Sub: 'Headless Execution 4× Daily via GitHub Actions',
+    landingSec5Text: 'A headless Python daemon runs four times every day on GitHub Actions, continuously fetching new OpenAQ station measurements, computing next-day predictions, and generating automated coordinator advisories ready for one-click transmission to parents and staff.',
   },
 
   hi: {
@@ -152,14 +179,14 @@ export const translations = {
     liveStatusTitle: 'पारदर्शिता व हालिया डेटा अंतर्ग्रहण रिकॉर्ड',
     ingestTimestamp: 'डेटा अंतर्ग्रहण समय (IST)',
     latestObservation: 'नवीनतम पूर्ण 24-घंटे का प्रेक्षण',
-    uncertaintyBounds: 'अनिश्चितता सीमा (90% दायरा)',
+    uncertaintyBounds: 'अनिश्चितता सीमा (80% दायरा)',
     trainingHorizon: 'मॉडल प्रशिक्षण समय-सीमा',
     liveHonestyNote: '* सत्यनिष्ठा टिप्पणी: लाइव पूर्वानुमानों को कल का 24-घंटे का चक्र पूरा होने से पूर्व वास्तविक डेटा से सत्यापित नहीं किया जा सकता। रीप्ले मोड के आंकड़े ऐतिहासिक टेस्ट सेट पर आधारित हैं।',
 
     // Hero Section
     projectedNextDay: 'कल के लिए अनुमानित 24-घंटे का औसत PM2.5',
     projectedMean: 'अनुमानित औसत PM2.5 सांद्रता (कल)',
-    intervalLabel: '90% विश्वास अंतराल (दायरा):',
+    intervalLabel: '80% विश्वास अंतराल (दायरा):',
     alertStamp: 'बाहरी गतिविधियां स्थगित करें // चेतावनी',
     noAlertStamp: 'सामान्य बाहरी गतिविधियां जारी रखें // सुरक्षित',
 
@@ -182,7 +209,7 @@ export const translations = {
     policyLabel: 'निर्णय नीति:',
     policyCalibrated: 'कैलिब्रेटेड सुरक्षा बफर (+6 µg/m³ • केवल 2 झूठे अलार्म)',
     policyBalanced: 'संतुलित पॉइंट रूल (पूर्वानुमान > 60)',
-    policyConservative: 'मौसमी 90% ऊपरी सीमा (केवल 9 झूठे अलार्म)',
+    policyConservative: 'सावधानी नियम (80% ऊपरी सीमा > 60)',
 
     // Stepper & Jumps
     jumpLabel: 'त्वरित चयन:',
@@ -192,7 +219,7 @@ export const translations = {
 
     // Bottom Ticker Strip
     tickerModel: '01 // मॉडल पूर्वानुमान',
-    tickerInterval: '02 // 90% विश्वास अंतराल',
+    tickerInterval: '02 // 80% विश्वास अंतराल',
     tickerBaseline: '03 // बेंचमार्क (कल = आज)',
     tickerError: '04 // ऐतिहासिक परीक्षण त्रुटि',
     tickerSpread: 'दायरा:',
@@ -208,8 +235,8 @@ export const translations = {
     cardAccuracyTitle: 'निर्णय सटीकता (@ 60 µg/m³)',
     cardAccuracySub: 'पॉइंट रूल सटीकता:',
     cardAccuracyDesc: 'कैलिब्रेटेड बफर नीति के तहत सही चेतावनी / सुरक्षित दिन का निर्णय। झूठे अलार्मों को घटाकर मात्र 2 दिन किया गया (मौसमी सीमा में 9)।',
-    cardCoverageTitle: '90% सांख्यिकीय अंतराल कवरेज',
-    cardCoverageSub: '80% नाममात्र कवरेज:',
+    cardCoverageTitle: '80% सांख्यिकीय अंतराल कवरेज',
+    cardCoverageSub: 'नाममात्र 80% लक्ष्य:',
     cardCoverageDesc: 'मौसम में बदलाव व मौसमी प्रदूषण के दौरान मॉडल के [निचली, ऊपरी] सीमा के भीतर रहे वास्तविक मान।',
     cardMaeTitle: 'परीक्षण त्रुटि मार्जिन (MAE)',
     cardMaeBaseline: 'बेंचमार्क:',
@@ -225,7 +252,7 @@ export const translations = {
     colThreshold: 'PM2.5 सीमा',
     colDaysAbove: 'अधिक दिन',
     colPointRule: 'पॉइंट रूल (pt: मॉडल > t)',
-    colConservative: 'कंजर्वेटिव रूल (ct: 90% सीमा > t)',
+    colConservative: 'कंजर्वेटिव रूल (ct: 80% सीमा > t)',
     colRiskRule: 'जोखिम-कैलिब्रेटेड रूल (pr)',
     thGroundTruth: 'वास्तविक दिन',
     thHit: 'सटीक (Hit)',
@@ -258,6 +285,33 @@ export const translations = {
     // Footer
     footerDisclaimer: 'केवल प्रोटोटाइप। यह चिकित्सीय सलाह नहीं है। PM2.5 डेटा: OpenAQ; मौसम डेटा: Open-Meteo।',
     footerColophon: 'दिल्ली वायु गुणवत्ता अगले दिन का पूर्वानुमान • स्विस संपादकीय प्रारूप',
-    footerDetails: 'दिल्ली के स्कूलों के लिए तैयार किया गया निर्णय टूल। 120-दिवसीय टेस्ट डेटा पर परीक्षित। लाइव मोड हर 6 घंटे में गिटहब एक्शन्स द्वारा स्वचालित अपडेट होता है। एल्गोरिथ्म: HistGradientBoostingRegressor (90% विश्वास अंतराल)।',
+    footerDetails: 'दिल्ली के स्कूलों के लिए तैयार किया गया निर्णय टूल। 120-दिवसीय टेस्ट डेटा पर परीक्षित। लाइव मोड हर 6 घंटे में गिटहब एक्शन्स द्वारा स्वचालित अपडेट होता है। एल्गोरिथ्म: HistGradientBoostingRegressor (80% विश्वास अंतराल)।',
+
+    // AirShield 1.0 Landing Page
+    landingTag: 'एयरशील्ड 1.0 // बाल श्वसन स्वास्थ्य सुरक्षा प्रणाली',
+    landingHeadline: 'दिल्ली के स्कूलों में बाल स्वास्थ्य सुरक्षा हेतु 24-घंटे पूर्व PM2.5 पूर्वानुमान व निर्णय प्रणाली।',
+    landingSubheadline: 'एक विश्वसनीय निर्णय प्रणाली जो स्कूल प्रधानाचार्यों और समन्वयकों को सुबह की प्रार्थना सभा और खेलकूद से 24 घंटे पूर्व सटीक सुरक्षा निर्देश प्रदान करती है।',
+    landingAuthors: 'स्वस्तिक दिव्यांशु व कृष्णेंदु पात्रो',
+    landingSchool: 'डीएवी चंद्रशेखरपुर भुवनेश्वर',
+    landingSchoolFull: 'डीएवी पब्लिक स्कूल, चंद्रशेखरपुर, भुवनेश्वर, ओडिशा',
+    landingCtaLive: 'लाइव पूर्वानुमान प्रारंभ करें →',
+    landingCtaLiveSub: 'गिटहब एक्शन्स द्वारा प्रतिदिन 4 बार अद्यतन 24-घंटे का लाइव पूर्वानुमान।',
+    landingCtaReplay: '120-दिवसीय टेस्ट रीप्ले देखें →',
+    landingCtaReplaySub: '80% सांख्यिकीय विश्वास अंतराल के साथ 120 टेस्ट दिनों का पूर्ण ऐतिहासिक मूल्यांकन।',
+    landingSec1Title: '01 // सुबह का प्रदूषण जोखिम',
+    landingSec1Sub: 'सुबह 07:30 बजे की प्रार्थना सभा व खेलकूद की संवेदनशीलता',
+    landingSec1Text: 'सर्दियों में रात के तापमान व्युत्क्रमण (Inversion) के कारण प्रदूषक कण जमीन की सतह के पास कैद हो जाते हैं। PM2.5 का स्तर सुबह 7 से 9:30 बजे के बीच चरम पर होता है—ठीक उसी समय जब बच्चे स्कूल आते हैं और मैदान में एकत्र होते हैं। उसी सुबह डेटा देखना बहुत देर हो चुकी होती है। एयरशील्ड 24 घंटे पूर्व अग्रिम चेतावनी देकर इनडोर व्यवस्था करने का समय प्रदान करता है।',
+    landingSec2Title: '02 // मशीन लर्निंग इंजन',
+    landingSec2Sub: 'स्टेशन सेंसर + उच्च-सटीक मौसम विज्ञान',
+    landingSec2Text: 'एयरशील्ड ओपन-एक्यू (OpenAQ) के प्रमाणित ग्राउंड स्टेशनों और ओपन-मेटिओ (Open-Meteo) के मौसम डेटा (हवा की गति व दिशा, सीमा परत ऊंचाई, आर्द्रता, तापमान सीमा और वर्षा) को जोड़ता है। HistGradientBoostingRegressor मॉडल हवा के ठहराव व बारिश के बाद के जटिल पैटर्नों का सटीक पूर्वानुमान लगाता है।',
+    landingSec3Title: '03 // जोखिम-कैलिब्रेटेड सुरक्षा बफर',
+    landingSec3Sub: 'सममितीय त्रुटि के स्थान पर बाल स्वास्थ्य सुरक्षा को प्राथमिकता',
+    landingSec3Text: 'पारंपरिक मशीन लर्निंग मॉडल झूठी चेतावनी और चूक को समान मानते हैं। किंतु बाल स्वास्थ्य में, एक चूक (Miss) बच्चों को अत्यधिक विषैली हवा में उजागर कर देती है। एयरशील्ड +6 µg/m³ का कैलिब्रेटेड सुरक्षा बफर लागू करता है: 120 टेस्ट दिनों में 97.5% निर्णय सटीकता और 96.9% बाल सुरक्षा संवेदनशीलता (Recall), जबकि झूठे अलार्म मात्र 2 दिन तक सीमित रहते हैं।',
+    landingSec4Title: '04 // पारदर्शी 80% विश्वास अंतराल',
+    landingSec4Sub: 'प्रशिक्षण अवशिष्टों से निर्धारित सीमा (±20.7 µg/m³)',
+    landingSec4Text: 'केवल एक संख्या पर निर्भर रहना भ्रम पैदा कर सकता है। एयरशील्ड मॉडल के ऐतिहासिक अवशिष्टों से एक वैज्ञानिक 80% सांख्यिकीय अंतराल (±20.7 µg/m³) प्रस्तुत करता है, जिसने टेस्ट डेटा पर 80.8% वास्तविक कवरेज दर्ज किया।',
+    landingSec5Title: '05 // स्वचालित निरंतर पाइपलाइन',
+    landingSec5Sub: 'गिटहब एक्शन्स द्वारा प्रतिदिन 4 बार स्वचालित निष्पादन',
+    landingSec5Text: 'गिटहब एक्शन्स पर एक स्वचालित पायथन प्रक्रिया प्रतिदिन चार बार चलती है, जो नए सेंसर आंकड़े अंतर्ग्रहण करती है, पूर्वानुमान अद्यतन करती है और अभिभावकों तथा समन्वयकों हेतु एक-क्लिक रेडी नोटिस तैयार करती है।',
   },
 };

@@ -140,8 +140,8 @@ def main():
                 "model": None,
                 "lower": None,
                 "upper": None,
-                "lower_90": None,
-                "upper_90": None,
+                "lower_80": None,
+                "upper_80": None,
                 "baseline": None,
                 "alert": None,
                 "threshold": DEFAULT_THRESHOLD,
@@ -263,8 +263,8 @@ def main():
                 "model": None,
                 "lower": None,
                 "upper": None,
-                "lower_90": None,
-                "upper_90": None,
+                "lower_80": None,
+                "upper_80": None,
                 "baseline": None,
                 "alert": None,
                 "threshold": DEFAULT_THRESHOLD,
@@ -289,8 +289,8 @@ def main():
                 "model": None,
                 "lower": None,
                 "upper": None,
-                "lower_90": None,
-                "upper_90": None,
+                "lower_80": None,
+                "upper_80": None,
                 "baseline": None,
                 "alert": None,
                 "threshold": DEFAULT_THRESHOLD,
@@ -332,18 +332,13 @@ def main():
     baseline = pm25_today
 
     forecast_for_date = eval_idx + pd.Timedelta(days=1)
-    target_month_str = str(forecast_for_date.month)
-    q90_eff = float(meta.get("monthly_q90", {}).get(target_month_str, q90))
-    q80_eff = float(meta.get("monthly_q80", {}).get(target_month_str, q80))
+    q80_val = float(meta.get("q80", q80))
 
-    # 90% residual margin (primary) and 80% (secondary) - season-aware
-    lower_90 = float(np.round(max(0.0, pred - q90_eff), 1))
-    upper_90 = float(np.round(pred + q90_eff, 1))
-    lower_80 = float(np.round(max(0.0, pred - q80_eff), 1))
-    upper_80 = float(np.round(pred + q80_eff, 1))
-
-    lower = lower_90
-    upper = upper_90
+    # Single 80% prediction interval from model residuals
+    lower = float(np.round(max(0.0, pred_rounded - q80_val), 1))
+    upper = float(np.round(pred_rounded + q80_val, 1))
+    lower_80 = lower
+    upper_80 = upper
 
     # Atmospheric Error Accounting for Monsoon Rebound:
     # When rain washed out the air in the last 24-48 hours, road dust & local emissions
@@ -357,7 +352,6 @@ def main():
     # Primary alert uses calibrated safety buffer (+6 µg/m³ with error accounting): 97.5% Decision Accuracy, only 2 false alarms
     alert = bool((effective_pred + 6.0) > DEFAULT_THRESHOLD)
     alert_point_forecast = bool(pred_rounded > DEFAULT_THRESHOLD)
-    alert_90 = bool(upper_90 > DEFAULT_THRESHOLD)
     alert_80 = bool(upper_80 > DEFAULT_THRESHOLD)
 
     in_diwali = is_diwali_window(forecast_for_date)
@@ -372,15 +366,12 @@ def main():
         "model": pred_rounded,
         "lower": lower,
         "upper": upper,
-        "lower_90": lower_90,
-        "upper_90": upper_90,
         "lower_80": lower_80,
         "upper_80": upper_80,
         "baseline": baseline,
         "alert": alert,
         "alert_calibrated": alert,
         "alert_point_forecast": alert_point_forecast,
-        "alert_90": alert_90,
         "alert_80": alert_80,
         "threshold": DEFAULT_THRESHOLD,
         "in_diwali_window": in_diwali,
