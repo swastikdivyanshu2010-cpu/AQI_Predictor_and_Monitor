@@ -95,7 +95,7 @@ for name, p in preds.items():
     for pname, mask in periods.items():
         r[f"MAE {pname}"] = mean_absolute_error(actual[mask], p[mask]) if mask.any() else np.nan
     rows.append(r)
-print("\nError by period (ug/m3, lower is better):")
+print("\nError by period (µg/m³, lower is better):")
 print(pd.DataFrame(rows).round(1).to_string(index=False))
 
 # ---------- Day-by-day view of the Diwali window ----------

@@ -33,7 +33,8 @@ pm25 = hourly.set_index("time")["pm2_5"].resample("D").mean().rename("pm25")
 wx = get_json("https://archive-api.open-meteo.com/v1/archive", {
     "latitude": LAT, "longitude": LON, "start_date": START, "end_date": END,
     "daily": ("temperature_2m_mean,wind_speed_10m_max,"
-              "wind_direction_10m_dominant,precipitation_sum"),
+              "wind_direction_10m_dominant,precipitation_sum,"
+              "relative_humidity_2m_mean,temperature_2m_max,temperature_2m_min"),
     "timezone": "auto"})
 weather = pd.DataFrame(wx["daily"])
 weather["time"] = pd.to_datetime(weather["time"])
@@ -49,5 +50,5 @@ df.to_csv("data/delhi_daily.csv")
 print("City:", CITY)
 print("Rows:", len(df), "| from", df.index.min().date(), "to", df.index.max().date())
 print("Missing values per column:\n", df.isna().sum())
-print("Days with PM2.5 above 35 ug/m3:", int((df["pm25"] > 35).sum()))
+print("Days with PM2.5 above 35 µg/m³:", int((df["pm25"] > 35).sum()))
 print(df.head())

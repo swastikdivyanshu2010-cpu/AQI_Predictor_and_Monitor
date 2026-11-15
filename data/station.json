@@ -1,0 +1,9 @@
+{
+  "loc_id": 8118,
+  "name": "New Delhi",
+  "sensor_id": 23534,
+  "parameter": "pm25",
+  "latitude": 28.6139,
+  "longitude": 77.2090,
+  "timezone": "Asia/Kolkata"
+}

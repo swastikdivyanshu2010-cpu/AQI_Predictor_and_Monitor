@@ -72,7 +72,7 @@ for name, p in preds.items():
     rows.append({"model": name,
                  "MAE": mean_absolute_error(actual, p),
                  "RMSE": mean_squared_error(actual, p) ** 0.5})
-print("Test-set error (ug/m3, lower is better):")
+print("Test-set error (µg/m³, lower is better):")
 print(pd.DataFrame(rows).round(1).to_string(index=False))
 
 # Decide your main model BEFORE looking at test results, to keep the test honest.
@@ -115,7 +115,7 @@ plt.plot(dates, actual, label="Actual", linewidth=2)
 plt.plot(dates, best, label=model_name)
 plt.plot(dates, base, label="Baseline: tomorrow = today", alpha=0.6)
 plt.axhline(ALERT_THRESHOLD, color="red", linestyle="--", label=f"Alert threshold ({ALERT_THRESHOLD})")
-plt.ylabel("PM2.5 (ug/m3)")
+plt.ylabel("PM2.5 (µg/m³)")
 plt.title(f"{CITY}: next-day PM2.5 forecast on unseen test days")
 plt.legend()
 plt.tight_layout()

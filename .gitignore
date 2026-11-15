@@ -1,0 +1,27 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Raw Data CSVs (Keep data/station.json)
+data/*.csv
+data/**/*.csv
+!data/station.json
+
+# Models are committed per project requirements
+!models/model.joblib
+!models/meta.json
+
+# Node & Frontend Build
+node_modules/
+dist/
+delhi-aq-app/node_modules/
+delhi-aq-app/dist/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.pytest_cache/
