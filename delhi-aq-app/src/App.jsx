@@ -297,12 +297,11 @@ const DEFAULT_FAILURE_NOTES = {
 };
 
 export default function App() {
-  // Theme state: dark | light (persisted in localStorage)
+  // Theme state: dark | light (persisted in localStorage, defaults to signature light paper broadsheet)
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === 'undefined') return false;
     const saved = localStorage.getItem('airshield_theme');
-    if (saved) return saved === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return saved === 'dark';
   });
 
   // Sync dark class on html root and persist
