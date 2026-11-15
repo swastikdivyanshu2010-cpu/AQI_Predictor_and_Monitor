@@ -57,7 +57,6 @@ def fetch_live_weather(days_back: int = 14) -> pd.DataFrame:
 def fetch_live_openaq_pm25(sensor_id: int, api_key: str, days_back: int = 14) -> pd.Series:
     """Fetch recent daily PM2.5 from OpenAQ v3 sensor endpoint."""
     now_ist = datetime.datetime.now(IST)
-    # Start from days_back before today
     from_date = (now_ist - datetime.timedelta(days=days_back + 2)).strftime("%Y-%m-%d")
     to_date = now_ist.strftime("%Y-%m-%d")
     
@@ -72,7 +71,6 @@ def fetch_live_openaq_pm25(sensor_id: int, api_key: str, days_back: int = 14) ->
     
     out = {}
     for it in results:
-        # Extract local date string (IST)
         local_s = ((it.get("period") or {}).get("datetimeFrom") or {}).get("local")
         val = it.get("value")
         if local_s and val is not None and val >= 0:
@@ -80,6 +78,25 @@ def fetch_live_openaq_pm25(sensor_id: int, api_key: str, days_back: int = 14) ->
             out[dt_key] = float(val)
             
     return pd.Series(out, dtype=float).sort_index()
+
+
+def fetch_live_openmeteo_pm25(days_back: int = 14) -> pd.Series:
+    """Fetch recent daily PM2.5 from Open-Meteo Air Quality API (zero API key needed)."""
+    url = "https://air-quality-api.open-meteo.com/v1/air-quality"
+    params = {
+        "latitude": LAT,
+        "longitude": LON,
+        "hourly": "pm2_5",
+        "past_days": days_back,
+        "timezone": "Asia/Kolkata",
+    }
+    r = requests.get(url, params=params, timeout=30)
+    r.raise_for_status()
+    data = r.json().get("hourly", {})
+    df_hourly = pd.DataFrame(data)
+    df_hourly["time"] = pd.to_datetime(df_hourly["time"])
+    daily = df_hourly.set_index("time")["pm2_5"].resample("D").mean()
+    return daily.dropna()
 
 
 def write_latest_json(filepath: str, payload: dict):
@@ -139,69 +156,92 @@ def main():
     else:
         # Live network mode
         api_key = os.environ.get("OPENAQ_API_KEY")
-        if not api_key:
-            write_latest_json(args.output, {
-                "status": "unavailable",
-                "reason": "OPENAQ_API_KEY environment variable not set.",
-                "generated_at": now_utc_iso,
-                "issued_on": None,
-                "forecast_for": None,
-                "pm25_today": None,
-                "model": None,
-                "lower": None,
-                "upper": None,
-                "lower_90": None,
-                "upper_90": None,
-                "baseline": None,
-                "alert": None,
-                "threshold": DEFAULT_THRESHOLD,
-                "in_diwali_window": False,
-                "data_source": "OpenAQ + Open-Meteo forecast API",
-                "model_trained_through": model_trained_through
-            })
-            return
+        pm25_series = None
+        data_source = None
 
-        station_file = "data/station.json"
-        sensor_id = 23534  # Default sensor for New Delhi
-        if os.path.exists(station_file):
+        # 1. Try OpenAQ if API key is provided
+        if api_key:
+            station_file = "data/station.json"
+            sensor_id = 23534  # Default sensor for New Delhi
+            if os.path.exists(station_file):
+                try:
+                    with open(station_file) as f:
+                        sensor_id = json.load(f).get("sensor_id", sensor_id)
+                except Exception:
+                    pass
             try:
-                with open(station_file) as f:
-                    sensor_id = json.load(f).get("sensor_id", sensor_id)
-            except Exception:
-                pass
+                pm25_series = fetch_live_openaq_pm25(sensor_id, api_key, days_back=14)
+                data_source = "OpenAQ Station (Location 8118) + Open-Meteo"
+            except Exception as e:
+                print(f"Notice: OpenAQ fetch failed ({e}), falling back to Open-Meteo Air Quality...")
 
-        try:
-            pm25_series = fetch_live_openaq_pm25(sensor_id, api_key, days_back=14)
-            df_wx = fetch_live_weather(days_back=14)
-        except Exception as e:
-            write_latest_json(args.output, {
-                "status": "unavailable",
-                "reason": f"Network fetch failed: {str(e)}",
-                "generated_at": now_utc_iso,
-                "issued_on": None,
-                "forecast_for": None,
-                "pm25_today": None,
-                "model": None,
-                "lower": None,
-                "upper": None,
-                "lower_90": None,
-                "upper_90": None,
-                "baseline": None,
-                "alert": None,
-                "threshold": DEFAULT_THRESHOLD,
-                "in_diwali_window": False,
-                "data_source": "OpenAQ + Open-Meteo forecast API",
-                "model_trained_through": model_trained_through
-            })
-            return
+        # 2. Keyless fallback: Open-Meteo Air Quality API (zero credentials required)
+        if pm25_series is None or len(pm25_series) == 0:
+            try:
+                pm25_series = fetch_live_openmeteo_pm25(days_back=14)
+                data_source = "Open-Meteo Air Quality & Weather API"
+            except Exception as e:
+                print(f"Notice: Open-Meteo Air Quality fetch failed ({e}).")
 
-        # Exclude today's partial day in IST - only use fully completed IST days
-        today_ist_date = pd.to_datetime(datetime.datetime.now(IST).strftime("%Y-%m-%d"))
-        pm25_series = pm25_series[pm25_series.index < today_ist_date]
+        # 3. If live endpoints both fail, gracefully fall back to local cached dataset
+        if pm25_series is None or len(pm25_series) == 0:
+            csv_path = "data/delhi_daily_openaq.csv"
+            if os.path.exists(csv_path):
+                print("Falling back to local cached dataset...")
+                df = pd.read_csv(csv_path, parse_dates=["date"]).set_index("date").sort_index()
+                data_source = "Offline CSV Fallback"
+            else:
+                write_latest_json(args.output, {
+                    "status": "unavailable",
+                    "reason": "All live atmospheric APIs and local fallback caches were unreachable.",
+                    "generated_at": now_utc_iso,
+                    "issued_on": None,
+                    "forecast_for": None,
+                    "pm25_today": None,
+                    "model": None,
+                    "lower": None,
+                    "upper": None,
+                    "lower_90": None,
+                    "upper_90": None,
+                    "baseline": None,
+                    "alert": None,
+                    "threshold": DEFAULT_THRESHOLD,
+                    "in_diwali_window": False,
+                    "data_source": "Unavailable",
+                    "model_trained_through": model_trained_through,
+                    "model_status": "offline"
+                })
+                return
+        else:
+            try:
+                df_wx = fetch_live_weather(days_back=14)
+            except Exception as e:
+                write_latest_json(args.output, {
+                    "status": "unavailable",
+                    "reason": f"Weather fetch failed: {str(e)}",
+                    "generated_at": now_utc_iso,
+                    "issued_on": None,
+                    "forecast_for": None,
+                    "pm25_today": None,
+                    "model": None,
+                    "lower": None,
+                    "upper": None,
+                    "lower_90": None,
+                    "upper_90": None,
+                    "baseline": None,
+                    "alert": None,
+                    "threshold": DEFAULT_THRESHOLD,
+                    "in_diwali_window": False,
+                    "data_source": data_source,
+                    "model_trained_through": model_trained_through,
+                    "model_status": "offline"
+                })
+                return
 
-        # Merge weather with pm25
-        df = df_wx.join(pm25_series.rename("pm25"), how="left")
-        data_source = "OpenAQ + Open-Meteo forecast API"
+            # Exclude today's partial day in IST - only use fully completed IST days
+            today_ist_date = pd.to_datetime(datetime.datetime.now(IST).strftime("%Y-%m-%d"))
+            pm25_series = pm25_series[pm25_series.index < today_ist_date]
+            df = df_wx.join(pm25_series.rename("pm25"), how="left")
 
     # Daily frequency and interpolate up to 3 missing days
     df = df.asfreq("D").interpolate(limit=3)
