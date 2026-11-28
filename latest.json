@@ -1,7 +1,7 @@
 {
   "status": "unavailable",
   "reason": "Weather fetch failed: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=30)",
-  "generated_at": "2026-11-27T15:59:13.528010+00:00",
+  "generated_at": "2026-11-28T00:58:06.778838+00:00",
   "issued_on": null,
   "forecast_for": null,
   "pm25_today": null,
